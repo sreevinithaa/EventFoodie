@@ -2,8 +2,22 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const customerSchema = new Schema({
+const orderSchema = new Schema({
+    orderNumber:{
+        type: Number,
+        required: true
+    },
+    customer:{
+        type: Schema.Types.ObjectId,
+        ref: 'Customer',
+        required: true
+    },
+    vendor:{
+        type: Schema.Types.ObjectId,
+        ref: 'FoodVendors',
+        required: true
+    }
 });
-const Customer = mongoose.model('Customer', customerSchema);
+const Order = mongoose.model('Order', orderSchema);
 
-module.exports = Customer;
+module.exports = Order;

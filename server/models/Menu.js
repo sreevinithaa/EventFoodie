@@ -27,6 +27,11 @@ const menuSchema = new Schema({
       comboPrice:{
         type: Number,
         required: true
+      },
+      vendor:{
+        type: Schema.Types.ObjectId,
+        ref: 'FoodVendors',
+        required: true
       }
 });
 const Menu = mongoose.model('Menu', menuSchema);
