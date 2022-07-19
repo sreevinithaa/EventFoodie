@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
-
+const EventProgram = require('./EventProgram');
 const eventSchema = new Schema({
 
     eventName: {
@@ -23,7 +23,8 @@ const eventSchema = new Schema({
         required: true,
         trim: true
       },
-      discription: {
+      description: {
+      
         type: String,
         required: true
       },
@@ -35,6 +36,7 @@ const eventSchema = new Schema({
         type: Date,
         required: true
       },
+      programs:[EventProgram]
 });
 const Event = mongoose.model('Event', eventSchema);
 
