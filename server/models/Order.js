@@ -16,7 +16,12 @@ const orderSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'FoodVendors',
         required: true
-    }
+    },
+    orderItem:[{
+        type: Schema.Types.ObjectId,
+        ref: 'OrderItem',
+        required: true
+    }]
 });
 const Order = mongoose.model('Order', orderSchema);
 
