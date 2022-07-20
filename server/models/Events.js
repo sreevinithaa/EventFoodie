@@ -30,11 +30,13 @@ const eventSchema = new Schema({
       },
       startDate: {
         type: Date,
-        required: true
+        required: true,
+        default: Date.now
       },
       endDate: {
         type: Date,
-        required: true
+        required: true, 
+        default: Date.now
       },
       programs:[{
         type: Schema.Types.ObjectId,

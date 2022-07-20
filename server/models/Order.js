@@ -17,6 +17,10 @@ const orderSchema = new Schema({
         ref: 'FoodVendors',
         required: true
     },
+    orderDate:{
+        type:Date,
+        default: Date.now
+    },
     orderItem:[{
         type: Schema.Types.ObjectId,
         ref: 'OrderItem',
