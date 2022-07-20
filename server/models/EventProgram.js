@@ -14,14 +14,16 @@ const eventProgramSchema = new Schema({
         required: true
       },
       startTime: {
-        type: Date,
-        required: true,
-        default: Date.now
+        type: String,
+        required: true
       },
       endTime: {
-        type: Date,
-        required: true,
-        default: Date.now
+        type: String,
+        required: true
+      },
+      event:{
+        type: Schema.Types.ObjectId,
+        ref: 'Event'
       },
       fees:{
         type: Number

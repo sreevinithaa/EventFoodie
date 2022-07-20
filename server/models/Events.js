@@ -38,9 +38,17 @@ const eventSchema = new Schema({
         required: true, 
         default: Date.now
       },
+      user:{
+        type: Schema.Types.ObjectId,
+        ref: 'Customer'
+      },
       programs:[{
         type: Schema.Types.ObjectId,
         ref: 'EventProgram'
+      }],
+      vendors:[{
+        type: Schema.Types.ObjectId,
+        ref: 'FoodVendors'
       }]
 });
 const Event = mongoose.model('Event', eventSchema);
