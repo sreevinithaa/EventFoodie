@@ -19,6 +19,7 @@ type Customer {
     price:Float
     isAvailable:Boolean
     comboPrice:Float
+    vendor:FoodVendors
   }
 
   type FoodVendors {
@@ -81,7 +82,7 @@ type Customer {
   }
   type Query {
     events: [Event]
-    menus(vendoId: ID): [Menu]
+    menus(vendorId: ID): [Menu]
     customer: Customer
     order(_id: ID!): Order
     checkout(products: [ID]!): Checkout
