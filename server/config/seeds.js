@@ -39,42 +39,6 @@ db.once("open", async () => {
 
   console.log("Customer seeded");
 
-  await Event.deleteMany();
-  var date = new Date();
-  const event = await Event.insertMany([
-    {
-      eventName: "Spinifex Spree Carnival 2022",
-      description: `Spinifex Spree has been running in Port Hedland since 1968, is the premier carnival event on the Hedland calendar and continues to be the Town's largest free community event.This year, we're introducing Truck Alley to the event. This will include an array of vehicles, trucks and machinery such as rubbish trucks, emergency vehicles, earth moving machinery and boats. `,
-      imageUrl: "spinifex.png",
-      venue: "Town Oval in Port Hedland",
-      city: "Port Hedland",
-      startDate: date,
-      endDate: date.addDays(90),
-      user: customer[1]._id,
-    },
-    {
-      eventName: `Sunset Food Markets`,
-      description: `The event series is presented by the Town of Port Hedland and BHP, and event managed by PPP Events.The markets are held under ambient festoon lighting in the park, providing visitors with the opportunity to enjoy a selection of delicious food options as the ships go by in the port. `,
-      imageUrl: "sunset.jpg",
-      venue: `West End's Marapikurrinya Park`,
-      city: "Port Hedland",
-      startDate: date,
-      endDate: date.addDays(90),
-      user: customer[1]._id,
-    },
-    {
-      eventName: "Hedland Food Festival",
-      description: `The festival will include a two-day culinary event where people can enjoy a variety of fare from different producers, as well as live music and activities. Celebrity chefs and food personalities, Mark Olive and Julie Goodwin, will feature at the event, conducting food demonstrations.`,
-      imageUrl: "hedlandfoodfestival.png",
-      venue: "Town Oval in Port Hedland",
-      city: "Port Hedland",
-      startDate: date,
-      endDate: date.addDays(90),
-      user: customer[1]._id,
-    },
-  ]);
-
-  console.log("event seeded");
   await Menu.deleteMany();
   const menu = await Menu.insertMany([
     {
@@ -226,6 +190,91 @@ db.once("open", async () => {
     },
   ]);
   console.log("Menu seeded");
+  await FoodVendors.deleteMany();
+  const foodvendors = await FoodVendors.insertMany([
+    {
+      name: "Burger King",
+      description: `Choose Your Own Freshy made burger and drink `,
+      imageUrl: "subway-logo-new.png",
+      bankAccountId: "34565756",
+      bankBSB: "354-345",
+      bankAccountName: "BurgerKing",
+      menu: [menu[0]._id, menu[1]._id, menu[2]._id, menu[3]._id, menu[4]._id],
+    },
+    {
+      name: "Domino",
+      description: `Choose Your Own Freshy Baked pizza and drink `,
+      imageUrl: "domino.png",
+      bankAccountId: "34565756",
+      bankBSB: "354-345",
+      bankAccountName: "domino",
+      menu: [
+        menu[5]._id,
+        menu[6]._id,
+        menu[7]._id,
+        menu[8]._id,
+        menu[9]._id,
+        menu[10]._id,
+        menu[11]._id,
+      ],
+    },
+    {
+      name: "SubWay",
+      description: `Choose Your Own Freshy Baked wraps and drink `,
+      imageUrl: "subway-logo-new.png",
+      bankAccountId: "34565756",
+      bankBSB: "354-345",
+      bankAccountName: "SubWay",
+      menu: [
+        menu[12]._id,
+        menu[13]._id,
+        menu[14]._id,
+        menu[15]._id,
+        menu[16]._id,
+      ],
+    },
+  ]);
+  console.log("food verndors seeded");
+  await Event.deleteMany();
+  var date = new Date();
+  const event = await Event.insertMany([
+    {
+      eventName: "Spinifex Spree Carnival 2022",
+      description: `Spinifex Spree has been running in Port Hedland since 1968, is the premier carnival event on the Hedland calendar and continues to be the Town's largest free community event.This year, we're introducing Truck Alley to the event. This will include an array of vehicles, trucks and machinery such as rubbish trucks, emergency vehicles, earth moving machinery and boats. `,
+      imageUrl: "spinifex.png",
+      venue: "Town Oval in Port Hedland",
+      city: "Port Hedland",
+      startDate: date,
+      endDate: date.addDays(90),
+      user: customer[1]._id,
+      vendors:[foodvendors[0]._id,foodvendors[1]._id,foodvendors[2]._id]
+    },
+    {
+      eventName: `Sunset Food Markets`,
+      description: `The event series is presented by the Town of Port Hedland and BHP, and event managed by PPP Events.The markets are held under ambient festoon lighting in the park, providing visitors with the opportunity to enjoy a selection of delicious food options as the ships go by in the port. `,
+      imageUrl: "sunset.jpg",
+      venue: `West End's Marapikurrinya Park`,
+      city: "Port Hedland",
+      startDate: date,
+      endDate: date.addDays(90),
+      user: customer[1]._id,
+      vendors:[foodvendors[0]._id,foodvendors[1]._id,foodvendors[2]._id]
+    },
+    {
+      eventName: "Hedland Food Festival",
+      description: `The festival will include a two-day culinary event where people can enjoy a variety of fare from different producers, as well as live music and activities. Celebrity chefs and food personalities, Mark Olive and Julie Goodwin, will feature at the event, conducting food demonstrations.`,
+      imageUrl: "hedlandfoodfestival.png",
+      venue: "Town Oval in Port Hedland",
+      city: "Port Hedland",
+      startDate: date,
+      endDate: date.addDays(90),
+      user: customer[1]._id,
+      vendors:[foodvendors[0]._id,foodvendors[1]._id,foodvendors[2]._id]
+    },
+  ]);
+
+  console.log("event seeded");
+
   await EventProgram.deleteMany();
   const program = await EventProgram.insertMany([
     {
@@ -312,51 +361,7 @@ db.once("open", async () => {
 
   console.log("eventprogram seeded");
 
-  await FoodVendors.deleteMany();
-  const foodvendors = await FoodVendors.insertMany([
-    {
-      name: "Burger King",
-      description: `Choose Your Own Freshy made burger and drink `,
-      imageUrl: "subway-logo-new.png",
-      bankAccountId: "34565756",
-      bankBSB: "354-345",
-      bankAccountName: "BurgerKing",
-      menu: [menu[0]._id, menu[1]._id, menu[2]._id, menu[3]._id, menu[4]._id],
-    },
-    {
-      name: "Domino",
-      description: `Choose Your Own Freshy Baked pizza and drink `,
-      imageUrl: "domino.png",
-      bankAccountId: "34565756",
-      bankBSB: "354-345",
-      bankAccountName: "domino",
-      menu: [
-        menu[5]._id,
-        menu[6]._id,
-        menu[7]._id,
-        menu[8]._id,
-        menu[9]._id,
-        menu[10]._id,
-        menu[11]._id,
-      ],
-    },
-    {
-      name: "SubWay",
-      description: `Choose Your Own Freshy Baked wraps and drink `,
-      imageUrl: "subway-logo-new.png",
-      bankAccountId: "34565756",
-      bankBSB: "354-345",
-      bankAccountName: "SubWay",
-      menu: [
-        menu[12]._id,
-        menu[13]._id,
-        menu[14]._id,
-        menu[15]._id,
-        menu[16]._id,
-      ],
-    },
-  ]);
-  console.log("food verndors seeded");
+  
 
   process.exit();
 });
