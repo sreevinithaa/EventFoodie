@@ -98,7 +98,7 @@ db.once("open", async () => {
       name: "MEGA MEATLOVERS PIZZA ",
       description:
         "Grilled chicken breast with beetroot, shredded carrot, cos lettuce, tomato, Spanish onion, relish & sweet chilli mayo.",
-      imageUrl: "meetlovers.jpg",
+      imageUrl: "meetlovers.png",
       price: 20,
       isAvailable: true,
       comboPrice: 25,
@@ -116,7 +116,7 @@ db.once("open", async () => {
       name: "SPICY VEG SUPREME PIZZA ",
       description:
         "Diced tomato, mushroom, capsicum, spinach, red onion & pineapple, served on a tomato & garlic base, topped with chilli flakes & spring onions",
-      imageUrl: "vegpizza.jpg",
+      imageUrl: "vegpizza.png",
       price: 20,
       isAvailable: true,
       comboPrice: 25,
@@ -125,7 +125,7 @@ db.once("open", async () => {
       name: "PERI PERI CHICKEN PIZZA ",
       description:
         "A flavoursome pairing of seasoned chicken pieces, Italian cherry tomatoes, sliced red onion & baby spinach, topped with a swirl of our addictive peri peri sauce",
-      imageUrl: "peri_peri_chicken.jpg",
+      imageUrl: "peri_peri_chicken.png",
       price: 20,
       isAvailable: true,
       comboPrice: 25,
@@ -133,7 +133,7 @@ db.once("open", async () => {
     {
       name: "7UP 375ml ",
       description: "",
-      imageUrl: "7_up.jpg",
+      imageUrl: "7_up.png",
       price: 5,
       isAvailable: true,
       comboPrice: 10,
@@ -141,7 +141,7 @@ db.once("open", async () => {
     {
       name: "Sunkist 375ml ",
       description: "",
-      imageUrl: "sunkist.jpg",
+      imageUrl: "sunkist.png",
       price: 5,
       isAvailable: true,
       comboPrice: 10,
