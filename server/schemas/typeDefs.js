@@ -3,20 +3,20 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
 type Customer {
     _id: ID
-    firstName: String
-    lastName:String
-    email:String
-    phone:String
-    userRole:String
+    firstName: String!
+    lastName:String!
+    email:String!
+    phone:String!
+    userRole:String!
     orders:[Order]
   }
 
   type Menu {
     _id: ID
-    name: String
+    name: String!
     description:String
-    imageUrl:String
-    price:Float
+    imageUrl:String!
+    price:Float!
     isAvailable:Boolean
     comboPrice:Float
     vendor:FoodVendors
@@ -24,9 +24,9 @@ type Customer {
 
   type FoodVendors {
     _id: ID
-    name: String
-    description:String
-    imageUrl:String
+    name: String!
+    description:String!
+    imageUrl:String!
     bankAccountId:String
     bankBSB:String
     bankAccountName:String
@@ -35,29 +35,29 @@ type Customer {
 
   type Event {
     _id: ID
-    eventName: String
-    venue:String
-    city:String
-    imageUrl:String
-    description:String
-    startDate:String
-    endDate:String
+    eventName: String!
+    venue:String!
+    city:String!
+    imageUrl:String!
+    description:String!
+    startDate:String!
+    endDate:String!
     user:Customer
     programs:[EventProgram]
     vendors:[FoodVendors]
   }
   type EventProgram {
     _id: ID
-    name: String
-    description:String
-    startTime:String
-    endTime:String
+    name: String!
+    description:String!
+    startTime:String!
+    endTime:String!
     fees:Float
     event:Event
   }
   type Order {
     _id: ID
-    orderNumber: String
+    orderNumber: Int
     orderDate:String
     customer:Customer
     vendor:FoodVendors
@@ -66,7 +66,7 @@ type Customer {
   }
   type OrderItem {
     _id: ID
-    qantity: Number
+    qantity: Int!
     comboSize:String
     comboDrink:String
     order:Order
@@ -91,7 +91,7 @@ type Customer {
   type Mutation {
     addCustomer(firstName: String!, lastName: String!, email: String!,phone:String,userRole:String, password: String!): Auth
     addOrder(menu: [ID]!,vendorId:ID): Order
-    updateCustomer(firstName: String!, lastName: String!, email: String!,phone:String,userRole:String, password: String!): User
+    updateCustomer(firstName: String!, lastName: String!, email: String!,phone:String,userRole:String, password: String!): Customer
      login(email: String!, password: String!): Auth
   }
 `;

@@ -235,8 +235,87 @@ db.once("open", async () => {
     },
   ]);
   console.log("food verndors seeded");
+  await EventProgram.deleteMany();
+  const program = await EventProgram.insertMany([
+    {
+      name: "Kids Face painting",
+      description: `Kids can enjoy free facepainting`,
+      startTime: "5.00 PM",
+      endTime: "6.00 PM",
+      fees: 0
+      
+    },
+    {
+      name: "Musical show",
+      description: `Everyone can enjoy the music under the moon`,
+      startTime: "6.00 PM",
+      endTime: "7.00 PM",
+      fees: 0
+    },
+    {
+      name: "Rides",
+      description: `There are variety of rides available for kids and adults`,
+      startTime: "5.00 PM",
+      endTime: "8.00 PM",
+      fees: 5
+    },
+    {
+      name: "Fireworks",
+      description: `At the end of the day show ends with fireworks`,
+      startTime: "8.00 PM",
+      endTime: "8.10 PM",
+      fees: 0
+    },
+    {
+      name: "Kids Face painting",
+      description: `Kids can enjoy free facepainting`,
+      startTime: "5.00 PM",
+      endTime: "6.00 PM",
+      fees: 0
+    },
+    {
+      name: "Entertainment puppet show",
+      description: `Everyone can enjoy the show under the moon`,
+      startTime: "6.00 PM",
+      endTime: "7.00 PM",
+      fees: 0
+    },
+    {
+      name: "Musical show",
+      description: `Everyone can enjoy the music under the moon`,
+      startTime: "7.00 PM",
+      endTime: "8.00 PM",
+      fees: 0
+    },
+    {
+      name: "Kids Face painting",
+      description: `Kids can enjoy free facepainting`,
+      startTime: "5.00 PM",
+      endTime: "6.00 PM",
+      fees: 0
+    },
+    {
+      name: "Chef cook",
+      description: `Everyone can enjoy cooking with chef`,
+      startTime: "6.00 PM",
+      endTime: "7.00 PM",
+      fees: 0
+    },
+    {
+      name: "Food exhibition",
+      description: `Everyone can enjoy the exhibition`,
+      startTime: "7.00 PM",
+      endTime: "8.00 PM",
+      fees: 0
+    },
+  ]);
+
+  console.log("eventprogram seeded");
+
   await Event.deleteMany();
   var date = new Date();
+  var edate= new Date();
+  edate.setDate(date.getDate() + 90);
   const event = await Event.insertMany([
     {
       eventName: "Spinifex Spree Carnival 2022",
@@ -245,9 +324,10 @@ db.once("open", async () => {
       venue: "Town Oval in Port Hedland",
       city: "Port Hedland",
       startDate: date,
-      endDate: date.addDays(90),
+      endDate: edate,
       user: customer[1]._id,
-      vendors:[foodvendors[0]._id,foodvendors[1]._id,foodvendors[2]._id]
+      vendors:[foodvendors[0]._id,foodvendors[1]._id,foodvendors[2]._id],
+      programs:[program[0]._id,program[1]._id,program[2]._id,program[3]._id]
     },
     {
       eventName: `Sunset Food Markets`,
@@ -256,9 +336,10 @@ db.once("open", async () => {
       venue: `West End's Marapikurrinya Park`,
       city: "Port Hedland",
       startDate: date,
-      endDate: date.addDays(90),
+      endDate: edate,
       user: customer[1]._id,
-      vendors:[foodvendors[0]._id,foodvendors[1]._id,foodvendors[2]._id]
+      vendors:[foodvendors[0]._id,foodvendors[1]._id,foodvendors[2]._id],
+      programs:[program[4]._id,program[5]._id,program[6]._id]
     },
     {
       eventName: "Hedland Food Festival",
@@ -267,99 +348,15 @@ db.once("open", async () => {
       venue: "Town Oval in Port Hedland",
       city: "Port Hedland",
       startDate: date,
-      endDate: date.addDays(90),
+      endDate: edate,
       user: customer[1]._id,
-      vendors:[foodvendors[0]._id,foodvendors[1]._id,foodvendors[2]._id]
+      vendors:[foodvendors[0]._id,foodvendors[1]._id,foodvendors[2]._id],
+      programs:[program[7]._id,program[8]._id,program[9]._id]
     },
   ]);
 
   console.log("event seeded");
 
-  await EventProgram.deleteMany();
-  const program = await EventProgram.insertMany([
-    {
-      name: "Kids Face painting",
-      description: `Kids can enjoy free facepainting`,
-      startTime: "5.00 PM",
-      endTime: "6.00 PM",
-      fees: 0,
-      event: event[0]._id,
-    },
-    {
-      name: "Musical show",
-      description: `Everyone can enjoy the music under the moon`,
-      startTime: "6.00 PM",
-      endTime: "7.00 PM",
-      fees: 0,
-      event: event[0]._id,
-    },
-    {
-      name: "Rides",
-      description: `There are variety of rides available for kids and adults`,
-      startTime: "5.00 PM",
-      endTime: "8.00 PM",
-      fees: 5,
-      event: event[0]._id,
-    },
-    {
-      name: "Fireworks",
-      description: `At the end of the day show ends with fireworks`,
-      startTime: "8.00 PM",
-      endTime: "8.10 PM",
-      fees: 0,
-      event: event[0]._id,
-    },
-    {
-      name: "Kids Face painting",
-      description: `Kids can enjoy free facepainting`,
-      startTime: "5.00 PM",
-      endTime: "6.00 PM",
-      fees: 0,
-      event: event[1]._id,
-    },
-    {
-      name: "Entertainment puppet show",
-      description: `Everyone can enjoy the show under the moon`,
-      startTime: "6.00 PM",
-      endTime: "7.00 PM",
-      fees: 0,
-      event: event[1]._id,
-    },
-    {
-      name: "Musical show",
-      description: `Everyone can enjoy the music under the moon`,
-      startTime: "7.00 PM",
-      endTime: "8.00 PM",
-      fees: 0,
-      event: event[1]._id,
-    },
-    {
-      name: "Kids Face painting",
-      description: `Kids can enjoy free facepainting`,
-      startTime: "5.00 PM",
-      endTime: "6.00 PM",
-      fees: 0,
-      event: event[2]._id,
-    },
-    {
-      name: "Chef cook",
-      description: `Everyone can enjoy cooking with chef`,
-      startTime: "6.00 PM",
-      endTime: "7.00 PM",
-      fees: 0,
-      event: event[2]._id,
-    },
-    {
-      name: "Food exhibition",
-      description: `Everyone can enjoy the exhibition`,
-      startTime: "7.00 PM",
-      endTime: "8.00 PM",
-      fees: 0,
-      event: event[2]._id,
-    },
-  ]);
-
-  console.log("eventprogram seeded");
 
   
 

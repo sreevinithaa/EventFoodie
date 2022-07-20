@@ -9,8 +9,7 @@ const menuSchema = new Schema({
     trim: true,
   },
   description: {
-    type: String,
-    required: true,
+    type: String
   },
   imageUrl: {
     type: String,
@@ -24,8 +23,7 @@ const menuSchema = new Schema({
     type: Boolean,
   },
   comboPrice: {
-    type: Number,
-    required: true,
+    type: Number
   },
   vendor: { type: Schema.Types.ObjectId, ref: "FoodVendors" },
 });
