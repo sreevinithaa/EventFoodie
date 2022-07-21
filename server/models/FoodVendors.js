@@ -26,6 +26,9 @@ const foodVendorsSchema = new Schema({
       bankAccountName:{
         type: String
       },
+      user:{type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true},
       menu:[{type: Schema.Types.ObjectId,
         ref: 'Menu',
         required: true}]

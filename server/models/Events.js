@@ -40,7 +40,7 @@ const eventSchema = new Schema({
       },
       user:{
         type: Schema.Types.ObjectId,
-        ref: 'Customer'
+        ref: 'User'
       },
       programs:[{
         type: Schema.Types.ObjectId,

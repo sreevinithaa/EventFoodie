@@ -1,6 +1,6 @@
 const db = require("./connection");
 const {
-  Customer,
+  User,
   EventProgram,
   Event,
   FoodVendors,
@@ -8,9 +8,9 @@ const {
 } = require("../models");
 
 db.once("open", async () => {
-  await Customer.deleteMany();
+  await User.deleteMany();
 
-  const customer = await Customer.insertMany([
+  const customer = await User.insertMany([
     {
       firstName: "Vinitha",
       lastName: "Gowtheepan",
@@ -33,11 +33,27 @@ db.once("open", async () => {
       email: "kayal@gmail.com",
       phone: "0588307495",
       password: "123456",
-      userRole: "Public",
+      userRole: "Vendor",
+    },
+    {
+      firstName: "Varun",
+      lastName: "Gow",
+      email: "varun@gmail.com",
+      phone: "0588307495",
+      password: "123456",
+      userRole: "Vendor",
+    },
+    {
+      firstName: "Iyal",
+      lastName: "Gow",
+      email: "iyal@gmail.com",
+      phone: "0588307495",
+      password: "123456",
+      userRole: "Vendor",
     },
   ]);
 
-  console.log("Customer seeded");
+  console.log("User seeded");
 
   await Menu.deleteMany();
   const menu = await Menu.insertMany([
@@ -199,6 +215,7 @@ db.once("open", async () => {
       bankAccountId: "34565756",
       bankBSB: "354-345",
       bankAccountName: "BurgerKing",
+      user:customer[2]._id,
       menu: [menu[0]._id, menu[1]._id, menu[2]._id, menu[3]._id, menu[4]._id],
     },
     {
@@ -208,6 +225,7 @@ db.once("open", async () => {
       bankAccountId: "34565756",
       bankBSB: "354-345",
       bankAccountName: "domino",
+      user:customer[3]._id,
       menu: [
         menu[5]._id,
         menu[6]._id,
@@ -225,6 +243,7 @@ db.once("open", async () => {
       bankAccountId: "34565756",
       bankBSB: "354-345",
       bankAccountName: "SubWay",
+      user:customer[4]._id,
       menu: [
         menu[12]._id,
         menu[13]._id,

@@ -1,6 +1,6 @@
 const { AuthenticationError } = require("apollo-server-express");
 const {
-  Customer,
+  User,
   EventProgram,
   Event,
   FoodVendors,
@@ -24,9 +24,9 @@ const resolvers = {
     menus: async (parent, { vendorId }) => {
       return await Menu.find({ vendor: vendorId });
     },
-    customer: async (parent, args, context) => {
+    user: async (parent, args, context) => {
       if (context.user) {
-        const user = await Customer.findById(context.user._id).populate(
+        const user = await User.findById(context.user._id).populate(
           "orders"
         );
         return user;
@@ -75,8 +75,8 @@ const resolvers = {
     },
   },
   Mutation: {
-    addCustomer: async (parent, args) => {
-      const user = await Customer.create(args);
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
       const token = signToken(user);
 
       return { token, user };
@@ -95,7 +95,7 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
-    updateCustomer: async (parent, args, context) => {
+    updateUser: async (parent, args, context) => {
       if (context.user) {
         return await User.findByIdAndUpdate(context.user._id, args, {
           new: true,
@@ -105,7 +105,7 @@ const resolvers = {
       throw new AuthenticationError("Not logged in");
     },
     login: async (parent, { email, password }) => {
-      const user = await Customer.findOne({ email });
+      const user = await User.findOne({ email });
 
       if (!user) {
         throw new AuthenticationError("Incorrect credentials");
