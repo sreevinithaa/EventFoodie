@@ -12,6 +12,7 @@ import Header from "./component/Header";
 import Footer from "./component/Footer";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import { StoreProvider } from "./utils/GlobalState";
 const httpLink = createHttpLink({
   uri: "/graphql",
 });
@@ -32,16 +33,21 @@ const client = new ApolloClient({
 });
 function App() {
   return (
-    <Router>
-      <Header />
-      <div className="flex flex-col min-h-[82vh]">
-      <Routes>
-        <Route exact path="/" element={<Login/>} />
-        <Route exact path="/login" element={<Login/>}/>
-        <Route exact path="/signup" element={<SignUp/>}/>
-      </Routes></div>
-      <Footer />
-    </Router>
+    <ApolloProvider client={client}>
+      <Router>
+        <StoreProvider>
+          <Header />
+          <div className="flex flex-col min-h-[82vh]">
+            <Routes>
+              <Route exact path="/" element={<Login />} />
+              <Route exact path="/login" element={<Login />} />
+              <Route exact path="/signup" element={<SignUp />} />
+            </Routes>
+          </div>
+          <Footer />
+        </StoreProvider>
+      </Router>
+    </ApolloProvider>
   );
 }
 
