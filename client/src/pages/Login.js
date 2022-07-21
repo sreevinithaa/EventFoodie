@@ -3,8 +3,8 @@ import { LockClosedIcon } from "@heroicons/react/solid";
 export default function Login() {
   return (
     <>
-      <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
+      <div className="min-h-full flex items-center  justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full  space-y-8">
           <div>
             <h2 className="mt-6 text-center text-3xl font-extrabold text-[#662B6D]">
               Sign in to your account
@@ -23,7 +23,7 @@ export default function Login() {
                   type="email"
                   autoComplete="email"
                   required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-[#662B6D] focus:border-[#662B6D] focus:z-10 sm:text-sm"
+                  className="appearance-none  relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-[#662B6D] focus:border-[#662B6D] focus:z-10 sm:text-sm"
                   placeholder="Email address"
                 />
               </div>
@@ -37,7 +37,7 @@ export default function Login() {
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-[#662B6D] focus:border-[#662B6D] focus:z-10 sm:text-sm"
+                  className="appearance-none  relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-[#662B6D] focus:border-[#662B6D] focus:z-10 sm:text-sm"
                   placeholder="Password"
                 />
               </div>

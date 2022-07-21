@@ -34,11 +34,12 @@ function App() {
   return (
     <Router>
       <Header />
+      <div className="flex flex-col min-h-[82vh]">
       <Routes>
         <Route exact path="/" element={<Login/>} />
         <Route exact path="/login" element={<Login/>}/>
         <Route exact path="/signup" element={<SignUp/>}/>
-      </Routes>
+      </Routes></div>
       <Footer />
     </Router>
   );
