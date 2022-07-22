@@ -34,7 +34,8 @@ if (auth.loggedIn()) {
 } else {
   navigation = [
     { name: "Dashboard", href: "#", current: true },
-    { name: "SignUp", href: "#", current: true },
+    { name: "SignUp", href: "/signup", current: true },
+    { name: "Login", href: "/login", current: true },
   ];
 }
 

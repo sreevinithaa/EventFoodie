@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_EVENTS = gql`
-  query events() {
-    events() {
+query events {
+    events {
       _id
       eventName
       venue
@@ -46,8 +46,8 @@ export const QUERY_MENU = gql`
 `;
 
 export const QUERY_USER = gql`
-query user() {
-  user() {   
+query user {
+  user {   
       _id
       firstName
       lastName

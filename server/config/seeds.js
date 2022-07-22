@@ -332,7 +332,7 @@ db.once("open", async () => {
   ]);
 
   console.log("eventprogram seeded");
-
+  
   await Event.deleteMany();
   var date = new Date();
   var edate= new Date();
@@ -341,7 +341,7 @@ db.once("open", async () => {
     {
       eventName: "Spinifex Spree Carnival 2022",
       description: `Spinifex Spree has been running in Port Hedland since 1968, is the premier carnival event on the Hedland calendar and continues to be the Town's largest free community event.This year, we're introducing Truck Alley to the event. This will include an array of vehicles, trucks and machinery such as rubbish trucks, emergency vehicles, earth moving machinery and boats. `,
-      imageUrl: "spinifex.png",
+      imageUrl: "spinifix.png",
       venue: "Town Oval in Port Hedland",
       city: "Port Hedland",
       startDate: date,
@@ -365,7 +365,7 @@ db.once("open", async () => {
     {
       eventName: "Hedland Food Festival",
       description: `The festival will include a two-day culinary event where people can enjoy a variety of fare from different producers, as well as live music and activities. Celebrity chefs and food personalities, Mark Olive and Julie Goodwin, will feature at the event, conducting food demonstrations.`,
-      imageUrl: "hedlandfoodfestival.png",
+      imageUrl: "foodfestival.png",
       venue: "Town Oval in Port Hedland",
       city: "Port Hedland",
       startDate: date,

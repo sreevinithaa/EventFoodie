@@ -14,9 +14,10 @@ const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 const resolvers = {
   Query: {
     events: async () => {
-      const currentdate = Date.now;
+      const currentdate = Date.now();
       return await Event.find({
-        currentdate: { $gte: startDate, $lte: endDate },
+        startDate: { $lte: currentdate },
+        endDate:{$gte: currentdate}
       })
         .populate("programs")
         .populate("vendors");
