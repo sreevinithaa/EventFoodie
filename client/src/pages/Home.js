@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-
+import { Link } from "react-router-dom";
 import { useStoreContext } from "../utils/GlobalState";
-import { UPDATE_EVENTS, UPDATE_MENU } from "../utils/actions";
+import { UPDATE_EVENTS } from "../utils/actions";
 import { useQuery } from "@apollo/client";
 import { QUERY_EVENTS } from "../utils/queries";
 import { idbPromise } from "../utils/helpers";
@@ -20,16 +20,16 @@ const formatDate = (date) => {
     }
     return [year, month, day].join('-');
   }
-console.log("test");
+
 const Home = () => {
   const [state, dispatch] = useStoreContext();
-  console.log("test1");
-  const { currentEvent } = state;
+ 
+ 
   const { loading, data } = useQuery(QUERY_EVENTS);
-  console.log(state);
+ 
   useEffect(() => {
     if (data) {
-      console.log(data);
+      
       dispatch({
         type: UPDATE_EVENTS,
         events: data.events,
@@ -37,6 +37,7 @@ const Home = () => {
       data.events.forEach((event) => {
         idbPromise("event", "put", event);
       });
+     
     } else if (!loading) {
       idbPromise("event", "get").then((event) => {
         dispatch({
@@ -51,7 +52,7 @@ const Home = () => {
     <div className="bg-white">
       <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="sr-only">Events</h2>
-<div className="grid ">
+        <div className="grid ">
         {state.events.map((event) => (
           <div key={event._id} className="flex justify-evenly mb-10	">
             <div className="flex-none w-[60%]">
@@ -67,13 +68,13 @@ const Home = () => {
                 {event.eventName}
               </p>
               <h3 className="mt-4 text-sm mb-2 text-gray"> {event.description}</h3>
-             <div className="mt-4 text-sm mb-2 text-gray text-gray">Start Date : {(event.startDate)}  End Date : {(event.endDate)} </div>
-              <button className="h-7 px-3 mr-10 text-[#662B6D] transition-colors duration-150 border border-[#662B6D] rounded-lg focus:shadow-outline hover:bg-[#662B6D] hover:text-[#ffffff]">
+             <div className="mt-4 text-sm mb-2 text-gray">Start Date : {(event.startDate)}  End Date : {(event.endDate)} </div>
+              <Link to={`/program/${event._id}`} className="h-7 p-2 px-3 mr-10 text-[#662B6D] transition-colors duration-150 border border-[#662B6D] rounded-lg focus:shadow-outline hover:bg-[#662B6D] hover:text-[#ffffff]">
                 Event Program
-              </button>
-              <button className="h-7 px-3 text-[#662B6D] transition-colors duration-150 border border-[#662B6D] rounded-lg focus:shadow-outline hover:bg-[#662B6D] hover:text-[#ffffff]">
+              </Link>
+              <Link to={`/vendors/${event._id}`} className="h-7 p-2 px-3 text-[#662B6D] transition-colors duration-150 border border-[#662B6D] rounded-lg focus:shadow-outline hover:bg-[#662B6D] hover:text-[#ffffff]">
                 Food Vendors
-              </button>{" "}
+              </Link>
             </div>
           </div>
         ))}
