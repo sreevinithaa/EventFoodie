@@ -1,4 +1,5 @@
 const db = require("./connection");
+const bcrypt = require('bcrypt');
 const {
   User,
   EventProgram,
@@ -9,14 +10,15 @@ const {
 
 db.once("open", async () => {
   await User.deleteMany();
-
+  const saltRounds = 10;
+  var password = await bcrypt.hash('123456', saltRounds);
   const customer = await User.insertMany([
     {
       firstName: "Vinitha",
       lastName: "Gowtheepan",
       email: "vini@gmail.com",
       phone: "0499702703",
-      password: "123456",
+      password: password,
       userRole: "Public",
     },
     {
@@ -24,7 +26,7 @@ db.once("open", async () => {
       lastName: "Jeson",
       email: "aimee@gmail.com",
       phone: "0299793492",
-      password: "123456",
+      password: password,
       userRole: "Host",
     },
     {
@@ -32,7 +34,7 @@ db.once("open", async () => {
       lastName: "Gow",
       email: "kayal@gmail.com",
       phone: "0588307495",
-      password: "123456",
+      password: password,
       userRole: "Vendor",
     },
     {
@@ -40,7 +42,7 @@ db.once("open", async () => {
       lastName: "Gow",
       email: "varun@gmail.com",
       phone: "0588307495",
-      password: "123456",
+      password:password,
       userRole: "Vendor",
     },
     {
@@ -48,7 +50,7 @@ db.once("open", async () => {
       lastName: "Gow",
       email: "iyal@gmail.com",
       phone: "0588307495",
-      password: "123456",
+      password: password,
       userRole: "Vendor",
     },
   ]);

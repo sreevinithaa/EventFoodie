@@ -1,6 +1,37 @@
 import { LockClosedIcon } from "@heroicons/react/solid";
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
 
+import { LOGIN } from '../utils/mutations';
+import Auth from '../utils/auth';
 export default function Login() {
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [login, { error }] = useMutation(LOGIN);
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      console.log(formState);
+      const mutationResponse = await login({
+        variables: { email: formState.email, password: formState.password },
+      
+      });
+      console.log(mutationResponse);
+      const token = mutationResponse.data.login.token;
+      Auth.login(token);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
   return (
     <>
       <div className="min-h-full flex items-center  justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -10,31 +41,33 @@ export default function Login() {
               Sign in to your account
             </h2>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
+          <form className="mt-8 space-y-6" onSubmit={handleFormSubmit}>
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
               <div className="mb-2">
-                <label htmlFor="email-address" className="sr-only">
+                <label  className="sr-only">
                   Email address
                 </label>
                 <input
-                  id="email-address"
+                  id="email"
                   name="email"
                   type="email"
                   autoComplete="email"
+                  onChange={handleChange}
                   required
                   className="appearance-none  relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-[#662B6D] focus:border-[#662B6D] focus:z-10 sm:text-sm"
                   placeholder="Email address"
                 />
               </div>
               <div>
-                <label htmlFor="password" className="sr-only">
+                <label  className="sr-only">
                   Password
                 </label>
                 <input
                   id="password"
                   name="password"
                   type="password"
+                  onChange={handleChange}
                   autoComplete="current-password"
                   required
                   className="appearance-none  relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-[#662B6D] focus:border-[#662B6D] focus:z-10 sm:text-sm"
@@ -50,7 +83,7 @@ export default function Login() {
               >
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                   <LockClosedIcon
-                    className="h-5 w-5 text-[#662B6D]-500 group-hover:text-[#662B6D]-400"
+                    className="h-5 w-5 text-[#f4f3f5] "
                     aria-hidden="true"
                   />
                 </span>
