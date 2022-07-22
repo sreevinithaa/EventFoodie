@@ -31,9 +31,12 @@ query events {
   }
 `;
 
-export const QUERY_MENU = gql`
-  query menus($vendorId: [ID]!) {
-    menus(vendorId: $vendorId) {
+export const QUERY_VENDOR = gql`
+  query vendor($_id: String) {
+    vendor(_id: $_id) {
+      _id
+    name
+    menu{
       _id
       name
       description
@@ -41,6 +44,8 @@ export const QUERY_MENU = gql`
       price
       isAvailable
       comboPrice
+    }
+      
     }
   }
 `;
@@ -60,7 +65,7 @@ query user {
 `;
 
 export const QUERY_ORDER = gql`
-query order($_id: [ID]!) {
+query order($_id: String) {
   order(_id:$_id) { 
    _id
    orderNumber

@@ -22,8 +22,8 @@ const resolvers = {
         .populate("programs")
         .populate("vendors");
     },
-    menus: async (parent, { vendorId }) => {
-      return await Menu.find({ vendor: vendorId });
+    vendor: async (parent, { _id }) => {
+      return await FoodVendors.findById({ _id }).populate("menu");
     },
     user: async (parent, args, context) => {
       if (context.user) {

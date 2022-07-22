@@ -15,7 +15,7 @@ import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import Program from "./pages/Program";
 import Vendors from "./pages/Vendors";
-
+import Order from "./pages/Order";
 import { StoreProvider } from "./utils/GlobalState";
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -48,6 +48,7 @@ function App() {
               <Route exact path="/signup" element={<SignUp />} />
               <Route exact path="/program/:id" element={<Program />} />
               <Route exact path="/vendors/:id" element={<Vendors />} />
+              <Route exact path="/order/:id" element={<Order />} />
             </Routes>
           </div>
           <Footer />
