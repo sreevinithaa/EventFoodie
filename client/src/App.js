@@ -14,6 +14,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import Program from "./pages/Program";
+import Vendors from "./pages/Vendors";
 
 import { StoreProvider } from "./utils/GlobalState";
 const httpLink = createHttpLink({
@@ -46,7 +47,7 @@ function App() {
               <Route exact path="/login" element={<Login />} />
               <Route exact path="/signup" element={<SignUp />} />
               <Route exact path="/program/:id" element={<Program />} />
-              <Route exact path="/vendors/:id" element={<SignUp />} />
+              <Route exact path="/vendors/:id" element={<Vendors />} />
             </Routes>
           </div>
           <Footer />
