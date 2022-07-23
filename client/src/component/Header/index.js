@@ -1,16 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../assets/EventFoodie.jpg";
-import Auth from "../../utils/auth";
+import { useStoreContext } from "../../utils/GlobalState";
+import { OPEN_CART } from "../../utils/actions";
 import auth from "../../utils/auth";
 let navigation = [];
 
 if (auth.loggedIn()) {
-  const profile = Auth.getProfile();
+  const profile = auth.getProfile();
 
   if (profile.data.userRole == "Host") {
     navigation = [
@@ -43,6 +45,12 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 const Header = () => {
+
+  const [state, dispatch] = useStoreContext();
+  function toggleCart() {
+    dispatch({ type: OPEN_CART });
+   
+  }
   return (
     <Disclosure as="nav" className="pb-2 border-b-4 border-[#662B6D]">
       {({ open }) => (
@@ -51,7 +59,7 @@ const Header = () => {
             <div className="relative flex items-center justify-between h-16">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md hover:text-white  focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
                     <XIcon className="block h-6 w-6" aria-hidden="true" />
@@ -79,12 +87,7 @@ const Header = () => {
                       <a
                         key={item.name}
                         href={item.href}
-                        className={classNames(
-                          item.current
-                            ? "bg-gray-900 text-white"
-                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                          "px-3 py-2 rounded-md text-sm font-medium leading-[5rem]"
-                        )}
+                        className="text-[#662B6D] hover:text-[#7e7c7c] px-3 py-2 rounded-md text-sm font-medium leading-[5rem]"
                         aria-current={item.current ? "page" : undefined}
                       >
                         {item.name}
@@ -98,12 +101,12 @@ const Header = () => {
                 {auth.loggedIn() === true ? (
                   <Menu as="div" className="ml-3 relative">
                     <div>
-                      <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                      <Menu.Button className="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#662B6D] focus:ring-[#662B6D]">
                         <span className="sr-only">Open user menu</span>
-                        <div className="m-1 mr-2 w-12 h-12 relative flex justify-center items-center rounded-full bg-blue-500 text-xl text-white uppercase">
+                        <div className="m-1 mr-2 w-12 h-12 relative flex justify-center items-center rounded-full bg-[#662B6D] text-xl text-white uppercase">
                           <FontAwesomeIcon
                             icon={faUser}
-                            className="text-[#662B6D]"
+                            className="text-[#ffffff]"
                             size="lg"
                           />
                         </div>
@@ -118,14 +121,14 @@ const Header = () => {
                       leaveFrom="transform opacity-100 scale-100"
                       leaveTo="transform opacity-0 scale-95"
                     >
-                      <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-[#662B6D] ring-opacity-5 focus:outline-none">
                         <Menu.Item>
                           {({ active }) => (
                             <a
                               href="#"
                               className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
+                                active ? "bg-[#662B6D] text-[#ffffff]" : "",
+                                "block px-4 py-2 text-sm text-gray"
                               )}
                             >
                               Your Profile
@@ -138,8 +141,8 @@ const Header = () => {
                             <a
                               href="#"
                               className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
+                                active ? "bg-[#662B6D] text-[#ffffff]" : "",
+                                "block px-4 py-2 text-sm text-gray"
                               )}
                             >
                               Sign out
@@ -152,6 +155,19 @@ const Header = () => {
                 ) : (
                   <div></div>
                 )}
+                <button
+                  type="button"
+                  onClick={toggleCart}
+                  className="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#662B6D] focus:ring-[#662B6D]"
+                >
+                  <div className="m-1 mr-2 w-12 h-12 relative flex justify-center items-center rounded-full bg-[#662B6D] text-xl text-white uppercase">
+                    <FontAwesomeIcon
+                      icon={faCartShopping}
+                      className="text-[#ffffff]"
+                      size="lg"
+                    />
+                  </div>
+                </button>
               </div>
             </div>
           </div>
@@ -163,12 +179,7 @@ const Header = () => {
                   key={item.name}
                   as="a"
                   href={item.href}
-                  className={classNames(
-                    item.current
-                      ? "bg-gray-900 text-white"
-                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                    "block px-3 py-2 rounded-md text-base font-medium"
-                  )}
+                  className="block text-[#662B6D] hover:text-gray px-3 py-2 rounded-md text-base font-medium"
                   aria-current={item.current ? "page" : undefined}
                 >
                   {item.name}
