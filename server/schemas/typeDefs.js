@@ -57,6 +57,7 @@ const typeDefs = gql`
     _id: ID
     orderNumber: Int
     orderDate: String
+    totalAmount:Float
     User: User
     vendor: FoodVendors
     orderItem: [Menu]
@@ -80,6 +81,7 @@ const typeDefs = gql`
     events: [Event]
     vendor(_id: String): FoodVendors
     user: User
+    myorder:Order
     order(_id:String): Order
     checkout(menu: [ID]!): Checkout
   }

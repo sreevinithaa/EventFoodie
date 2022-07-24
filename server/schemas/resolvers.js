@@ -34,6 +34,9 @@ const resolvers = {
       }
       throw new AuthenticationError("Not logged in");
     },
+    myorder:async (parent, args,context) => {
+      return await Order.find({ customer:context.user._id }).populate("orderItem").populate("vendor");
+    },
     order: async (parent, { _id }) => {
       return await Order.find({ _id: _id }).populate("orderItem");
     },

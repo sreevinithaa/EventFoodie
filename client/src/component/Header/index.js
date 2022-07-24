@@ -19,7 +19,7 @@ if (auth.loggedIn()) {
       { name: "Dashboard", href: "/", current: true },
       { name: "Events", href: "#", current: false },
       { name: "Vendor", href: "#", current: false },
-      { name: "Order", href: "#", current: false },
+    
     ];
   } else if (profile.data.userRole == "Vendor") {
     navigation = [
@@ -30,7 +30,7 @@ if (auth.loggedIn()) {
   } else {
     navigation = [
       { name: "Dashboard", href: "/", current: true },
-      { name: "MyOrder", href: "/order", current: false },
+      { name: "MyOrder", href: "/myorder", current: false },
     ];
   }
 } else {

@@ -9,7 +9,8 @@ import {
   ADD_MULTIPLE_TO_CART,
   CLEAR_CART,
   TOGGLE_CART,
-  OPEN_CART
+  OPEN_CART,
+  UPDATE_MY_ORDER
 } from "./actions";
 
 // The reducer is a function that accepts the current state and an action. It returns a new state based on that action.
@@ -84,6 +85,11 @@ export const reducer = (state, action) => {
         ...state,
         currentEvent: action.currentEvent,
       };
+      case UPDATE_MY_ORDER:
+        return {
+          ...state,
+          orders: action.orders,
+        };
     // Return the state as is in the event that the `action.type` passed to our reducer was not accounted for by the developers
     // This saves us from a crash.
     default:

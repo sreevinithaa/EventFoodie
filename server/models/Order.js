@@ -21,6 +21,10 @@ const orderSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  totalAmount:{
+    type: Number,
+    default:0
+  },
   orderItem: [
     {
       type: Schema.Types.ObjectId,

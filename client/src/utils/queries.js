@@ -1,7 +1,7 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_EVENTS = gql`
-query events {
+  query events {
     events {
       _id
       eventName
@@ -18,7 +18,7 @@ query events {
         endTime
         fees
       }
-      vendors{
+      vendors {
         _id
         name
         description
@@ -33,17 +33,16 @@ export const QUERY_VENDOR = gql`
   query vendor($_id: String) {
     vendor(_id: $_id) {
       _id
-    name
-    menu{
-      _id
       name
-      description
-      imageUrl
-      price
-      isAvailable
-      comboPrice
-    }
-      
+      menu {
+        _id
+        name
+        description
+        imageUrl
+        price
+        isAvailable
+        comboPrice
+      }
     }
   }
 `;
@@ -57,27 +56,50 @@ query user {
       email
       phone
       userRole
-     
+    
     }
   }
 `;
-
-export const QUERY_ORDER = gql`
-query order($_id: String) {
-  order(_id:$_id) { 
-   _id
-   orderNumber
-   orderDate
-   orderItem {
-    qantity
-    comboSize
-    comboDrink
-    menu{
-      name
-      imageUrl
-      price
+export const QUERY_MY_ORDER = gql`
+  query myorder {
+    myorder {
+      _id
+      orderNumber
+      orderDate
+      totalAmount
+      vendor {
+        _id
+        name
+        imageUrl
+      }
+      orderItem {
+        _id
+        name
+        description
+        imageUrl
+        price
+        comboPrice
+        vendor
+      }
     }
-   }
+  }
+`;
+export const QUERY_ORDER = gql`
+  query order($_id: String) {
+    order(_id: $_id) {
+      _id
+      orderNumber
+      orderDate
+      orderItem {
+        qantity
+        comboSize
+        comboDrink
+        menu {
+          name
+          imageUrl
+          price
+        }
+      }
     }
   }
 `;
