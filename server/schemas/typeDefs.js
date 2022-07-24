@@ -89,7 +89,7 @@ const typeDefs = gql`
       firstName: String!
       lastName: String!
       email: String!
-      phone: String
+      phone: String!
       userRole: String
       password: String!
     ): Auth

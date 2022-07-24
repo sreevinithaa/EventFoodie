@@ -80,13 +80,14 @@ const resolvers = {
   },
   Mutation: {
     addUser: async (parent, args) => {
+      
       const user = await User.create(args);
       const token = signToken(user);
 
       return { token, user };
     },
     addOrder: async (parent, args, context) => {
-      console.log(context);
+      
       if (context.user) {
         const order = new Order(args);
 

@@ -16,26 +16,26 @@ if (auth.loggedIn()) {
 
   if (profile.data.userRole == "Host") {
     navigation = [
-      { name: "Dashboard", href: "#", current: true },
+      { name: "Dashboard", href: "/", current: true },
       { name: "Events", href: "#", current: false },
       { name: "Vendor", href: "#", current: false },
       { name: "Order", href: "#", current: false },
     ];
   } else if (profile.data.userRole == "Vendor") {
     navigation = [
-      { name: "Dashboard", href: "#", current: true },
-      { name: "Menu", href: "#", current: false },
-      { name: "Order", href: "#", current: false },
+      { name: "Dashboard", href: "/", current: true },
+      { name: "Menu", href: "/menu", current: false },
+      { name: "Order", href: "/vorder", current: false },
     ];
   } else {
     navigation = [
-      { name: "Dashboard", href: "#", current: true },
-      { name: "MyOrder", href: "#", current: false },
+      { name: "Dashboard", href: "/", current: true },
+      { name: "MyOrder", href: "/order", current: false },
     ];
   }
 } else {
   navigation = [
-    { name: "Dashboard", href: "#", current: true },
+    { name: "Dashboard", href: "/", current: true },
     { name: "SignUp", href: "/signup", current: true },
     { name: "Login", href: "/login", current: true },
   ];
@@ -125,7 +125,7 @@ const Header = () => {
                         <Menu.Item>
                           {({ active }) => (
                             <a
-                              href="#"
+                              href="/profile"
                               className={classNames(
                                 active ? "bg-[#662B6D] text-[#ffffff]" : "",
                                 "block px-4 py-2 text-sm text-gray"
@@ -139,7 +139,8 @@ const Header = () => {
                         <Menu.Item>
                           {({ active }) => (
                             <a
-                              href="#"
+                              href="/"
+                              onClick={() => auth.logout()}
                               className={classNames(
                                 active ? "bg-[#662B6D] text-[#ffffff]" : "",
                                 "block px-4 py-2 text-sm text-gray"
