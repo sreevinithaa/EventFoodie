@@ -2,35 +2,9 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { useStoreContext } from "../../utils/GlobalState";
-import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../../utils/actions";
+import { TOGGLE_CART, ADD_MULTIPLE_TO_CART ,REMOVE_FROM_CART} from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
-const products = [
-  {
-    id: 1,
-    name: "Throwback Hip Bag",
-    href: "#",
-    color: "Salmon",
-    price: "$90.00",
-    quantity: 1,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg",
-    imageAlt:
-      "Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.",
-  },
-  {
-    id: 2,
-    name: "Medium Stuff Satchel",
-    href: "#",
-    color: "Blue",
-    price: "$32.00",
-    quantity: 1,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg",
-    imageAlt:
-      "Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.",
-  },
-  // More products...
-];
+
 
 export default function Cart() {
   const [state, dispatch] = useStoreContext();
@@ -56,6 +30,21 @@ export default function Cart() {
       setOpen(state.cartOpen);
     }
   }, [state.cartOpen]);
+  function calculateTotal() {
+    let sum = 0;
+    state.cart.forEach((item) => {
+      sum += item.price * item.purchaseQuantity;
+    });
+    return sum.toFixed(2);
+  }
+  const removeFromCart = item => {
+    dispatch({
+      type: REMOVE_FROM_CART,
+      _id: item._id
+    });
+    idbPromise('cart', 'delete', { ...item });
+
+  };
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -148,6 +137,7 @@ export default function Cart() {
                                         <div className="flex">
                                           <button
                                             type="button"
+                                            onClick={() => removeFromCart(item)}
                                             className="font-medium text-[#662B6D] hover:text-[#662B6D]"
                                           >
                                             Remove
@@ -170,11 +160,11 @@ export default function Cart() {
                         </div>
                       </div>
                     </div>
-
+                    {state.cart.length ? (
                     <div className="border-t border-gray py-6 px-4 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray">
                         <p>Subtotal</p>
-                        <p>$262.00</p>
+                        <p>${calculateTotal()}</p>
                       </div>
                       <p className="mt-0.5 text-sm text-gray">
                         Shipping and taxes calculated at checkout.
@@ -200,7 +190,7 @@ export default function Cart() {
                           </button>
                         </p>
                       </div>
-                    </div>
+                    </div>):<div></div>}
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
