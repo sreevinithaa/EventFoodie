@@ -17,13 +17,7 @@ const foodVendorsSchema = new Schema({
         type: String,
         required: true
       },
-      bankAccountId:{
-        type: String
-      },
-      bankBSB:{
-        type: String
-      },
-      bankAccountName:{
+      StripeAccount:{
         type: String
       },
       user:{type: Schema.Types.ObjectId,

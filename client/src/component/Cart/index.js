@@ -2,13 +2,18 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { useStoreContext } from "../../utils/GlobalState";
-import { TOGGLE_CART, ADD_MULTIPLE_TO_CART ,REMOVE_FROM_CART} from "../../utils/actions";
+import {
+  TOGGLE_CART,
+  ADD_MULTIPLE_TO_CART,
+  REMOVE_FROM_CART,
+} from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
-import { loadStripe } from '@stripe/stripe-js';
+import { loadStripe } from "@stripe/stripe-js";
 import { QUERY_CHECKOUT } from "../../utils/queries";
 import { useLazyQuery } from "@apollo/client";
+import Auth from "../../utils/auth";
 // stripePromise returns a promise with the stripe object as soon as the Stripe package loads
-const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+const stripePromise = loadStripe("pk_live_51LOwnlLVtVzEZgGOUqNfs4Um107uPJr0o6tv2HJsZkngFexvZQ4g6wntcBDf2e3woOz5bYh03gmwc22Huk5xdov700ZaAZruzG");
 export default function Cart() {
   const [state, dispatch] = useStoreContext();
   const [open, setOpen] = useState(state.cartOpen);
@@ -48,13 +53,12 @@ export default function Cart() {
     });
     return sum.toFixed(2);
   }
-  const removeFromCart = item => {
+  const removeFromCart = (item) => {
     dispatch({
       type: REMOVE_FROM_CART,
-      _id: item._id
+      _id: item._id,
     });
-    idbPromise('cart', 'delete', { ...item });
-
+    idbPromise("cart", "delete", { ...item });
   };
   // When the submit checkout method is invoked, loop through each item in the cart
   // Add each item id to the productIds array and then invoke the getCheckout query passing an object containing the id for all our products
@@ -131,8 +135,7 @@ export default function Cart() {
                                   <li key={item._id} className="flex py-6">
                                     <div className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-md border border-gray">
                                       <img
-                                       src={`/images/${item.imageUrl}`}
-                                       
+                                        src={`/images/${item.imageUrl}`}
                                         alt={item.name}
                                         className="h-full w-full object-cover object-center"
                                       />
@@ -142,18 +145,11 @@ export default function Cart() {
                                       <div>
                                         <div className="flex justify-between text-base font-medium text-gray">
                                           <h3>
-                                            <a href="#">
-                                              {" "}
-                                              {item.name}{" "}
-                                            </a>
+                                            <a href="#"> {item.name} </a>
                                           </h3>
-                                          <p className="ml-4">
-                                            {item.price}
-                                          </p>
+                                          <p className="ml-4">{item.price}</p>
                                         </div>
-                                        <p className="mt-1 text-sm text-gray">
-                                        
-                                        </p>
+                                        <p className="mt-1 text-sm text-gray"></p>
                                       </div>
                                       <div className="flex flex-1 items-end justify-between text-sm">
                                         <p className="text-gray">
@@ -187,37 +183,44 @@ export default function Cart() {
                       </div>
                     </div>
                     {state.cart.length ? (
-                    <div className="border-t border-gray py-6 px-4 sm:px-6">
-                      <div className="flex justify-between text-base font-medium text-gray">
-                        <p>Subtotal</p>
-                        <p>${calculateTotal()}</p>
-                      </div>
-                      <p className="mt-0.5 text-sm text-gray">
-                        Shipping and taxes calculated at checkout.
-                      </p>
-                      <div className="mt-6">
-                        <a
-                          href="#"
-                          onClick={submitCheckout}
-                          className="flex items-center justify-center rounded-md border border-transparent bg-[#662B6D] px-6 py-3 text-base font-medium text-[#ffffff] shadow-sm hover:bg-[#662B6D]"
-                        >
-                          Checkout
-                        </a>
-                      </div>
-                      <div className="mt-6 flex justify-center text-center text-sm text-gray">
-                        <p>
-                          or{" "}
-                          <button
-                            type="button"
-                            className="font-medium text-[#662B6D] hover:text-[#662B6D]"
-                            onClick={() => setOpen(false)}
-                          >
-                            Continue Shopping
-                            <span aria-hidden="true"> &rarr;</span>
-                          </button>
+                      <div className="border-t border-gray py-6 px-4 sm:px-6">
+                        <div className="flex justify-between text-base font-medium text-gray">
+                          <p>Subtotal</p>
+                          <p>${calculateTotal()}</p>
+                        </div>
+                        <p className="mt-0.5 text-sm text-gray">
+                          Shipping and taxes calculated at checkout.
                         </p>
+                        <div className="mt-6">
+                          {Auth.loggedIn() ? (
+                            <a
+                              href="#"
+                              onClick={submitCheckout}
+                              className="flex items-center justify-center rounded-md border border-transparent bg-[#662B6D] px-6 py-3 text-base font-medium text-[#ffffff] shadow-sm hover:bg-[#662B6D]"
+                            >
+                              Checkout
+                            </a>
+                          ) : (
+                            <span>(log in to check out)</span>
+                          )}
+                        </div>
+                        <div className="mt-6 flex justify-center text-center text-sm text-gray">
+                          <p>
+                            or{" "}
+                            <button
+                              type="button"
+                              className="font-medium text-[#662B6D] hover:text-[#662B6D]"
+                              onClick={() => setOpen(false)}
+                            >
+                              Continue Shopping
+                              <span aria-hidden="true"> &rarr;</span>
+                            </button>
+                          </p>
+                        </div>
                       </div>
-                    </div>):<div></div>}
+                    ) : (
+                      <div></div>
+                    )}
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

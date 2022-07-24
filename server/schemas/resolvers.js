@@ -9,7 +9,7 @@ const {
   OrderItem,
 } = require("../models");
 const { signToken } = require("../utils/auth");
-const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+const stripe = require("stripe")("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");
 
 const resolvers = {
   Query: {
@@ -70,7 +70,8 @@ const resolvers = {
         line_items,
         mode: 'payment',
         success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${url}/`
+        cancel_url: `${url}/`,
+        
       });
 
       return { session: session.id };

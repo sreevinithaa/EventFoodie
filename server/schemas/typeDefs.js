@@ -27,9 +27,7 @@ const typeDefs = gql`
     name: String!
     description: String!
     imageUrl: String!
-    bankAccountId: String
-    bankBSB: String
-    bankAccountName: String
+    StripeAccount: String
     menu: [Menu]
   }
 

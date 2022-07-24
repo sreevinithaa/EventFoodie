@@ -23,9 +23,7 @@ query events {
         name
         description
         imageUrl
-        bankAccountId
-        bankBSB
-        bankAccountName
+        StripeAccount
       }
     }
   }
