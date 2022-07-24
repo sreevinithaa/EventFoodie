@@ -23,7 +23,7 @@ const orderSchema = new Schema({
     },
     orderItem:[{
         type: Schema.Types.ObjectId,
-        ref: 'OrderItem',
+        ref: 'Menu',
         required: true
     }]
 });

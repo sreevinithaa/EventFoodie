@@ -4,11 +4,22 @@ import { XIcon } from "@heroicons/react/outline";
 import { useStoreContext } from "../../utils/GlobalState";
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART ,REMOVE_FROM_CART} from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
-
-
+import { loadStripe } from '@stripe/stripe-js';
+import { QUERY_CHECKOUT } from "../../utils/queries";
+import { useLazyQuery } from "@apollo/client";
+// stripePromise returns a promise with the stripe object as soon as the Stripe package loads
+const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 export default function Cart() {
   const [state, dispatch] = useStoreContext();
   const [open, setOpen] = useState(state.cartOpen);
+  const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
+  useEffect(() => {
+    if (data) {
+      stripePromise.then((res) => {
+        res.redirectToCheckout({ sessionId: data.checkout.session });
+      });
+    }
+  }, [data]);
   useEffect(() => {
     async function getCart() {
       const cart = await idbPromise("cart", "get");
@@ -45,6 +56,21 @@ export default function Cart() {
     idbPromise('cart', 'delete', { ...item });
 
   };
+  // When the submit checkout method is invoked, loop through each item in the cart
+  // Add each item id to the productIds array and then invoke the getCheckout query passing an object containing the id for all our products
+  function submitCheckout() {
+    const menuIds = [];
+
+    state.cart.forEach((item) => {
+      for (let i = 0; i < item.purchaseQuantity; i++) {
+        menuIds.push(item._id);
+      }
+    });
+
+    getCheckout({
+      variables: { menu: menuIds },
+    });
+  }
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -172,6 +198,7 @@ export default function Cart() {
                       <div className="mt-6">
                         <a
                           href="#"
+                          onClick={submitCheckout}
                           className="flex items-center justify-center rounded-md border border-transparent bg-[#662B6D] px-6 py-3 text-base font-medium text-[#ffffff] shadow-sm hover:bg-[#662B6D]"
                         >
                           Checkout

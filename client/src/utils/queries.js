@@ -85,8 +85,8 @@ query order($_id: String) {
 `;
 
 export const QUERY_CHECKOUT = gql`
-  query getCheckout($products: [ID]!) {
-    checkout(products: $products) {
+  query getCheckout($menu: [ID]!) {
+    checkout(menu: $menu) {
       session
     }
   }

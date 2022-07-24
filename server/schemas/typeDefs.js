@@ -61,7 +61,7 @@ const typeDefs = gql`
     orderDate: String
     User: User
     vendor: FoodVendors
-    orderItem: [OrderItem]
+    orderItem: [Menu]
   }
   type OrderItem {
     _id: ID
@@ -83,7 +83,7 @@ const typeDefs = gql`
     vendor(_id: String): FoodVendors
     user: User
     order(_id:String): Order
-    checkout(products: [ID]!): Checkout
+    checkout(menu: [ID]!): Checkout
   }
 
   type Mutation {

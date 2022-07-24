@@ -38,41 +38,43 @@ const resolvers = {
       return await Order.find({ _id: _id }).populate("orderItem");
     },
     checkout: async (parent, args, context) => {
-      // const url = new URL(context.headers.referer).origin;
-      // const order = new Order({ products: args.menu });
-      // const line_items = [];
+      
+      const url = new URL(context.headers.referer).origin;
+      const order = new Order({ orderItem: args.menu });
+      const line_items = [];
+      
+      const { orderItem } = await order.populate('orderItem').execPopulate();
+      
+      for (let i = 0; i < orderItem.length; i++) {
+        const product = await stripe.products.create({
+          name: orderItem[i].name,
+          description: orderItem[i].description,
+          images: [`${url}/images/${orderItem[i].imageUrl}`]
+        });
 
-      // const { products } = await order.populate('products').execPopulate();
+        const price = await stripe.prices.create({
+          product: product.id,
+          unit_amount: orderItem[i].price * 100,
+          currency: 'usd',
+        });
 
-      // for (let i = 0; i < products.length; i++) {
-      //   const product = await stripe.products.create({
-      //     name: products[i].name,
-      //     description: products[i].description,
-      //     images: [`${url}/images/${products[i].image}`]
-      //   });
+        line_items.push({
+          price: price.id,
+          quantity: 1
+        });
+      }
+    
 
-      //   const price = await stripe.prices.create({
-      //     product: product.id,
-      //     unit_amount: products[i].price * 100,
-      //     currency: 'usd',
-      //   });
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items,
+        mode: 'payment',
+        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${url}/`
+      });
 
-      //   line_items.push({
-      //     price: price.id,
-      //     quantity: 1
-      //   });
-      // }
-
-      // const session = await stripe.checkout.sessions.create({
-      //   payment_method_types: ['card'],
-      //   line_items,
-      //   mode: 'payment',
-      //   success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-      //   cancel_url: `${url}/`
-      // });
-
-      // return { session: session.id };
-      return { session: context.user._id };
+      return { session: session.id };
+     
     },
   },
   Mutation: {
