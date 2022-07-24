@@ -2,7 +2,8 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { useStoreContext } from "../../utils/GlobalState";
-import { TOGGLE_CART, OPEN_CART } from "../../utils/actions";
+import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../../utils/actions";
+import { idbPromise } from "../../utils/helpers";
 const products = [
   {
     id: 1,
@@ -35,6 +36,17 @@ export default function Cart() {
   const [state, dispatch] = useStoreContext();
   const [open, setOpen] = useState(state.cartOpen);
   useEffect(() => {
+    async function getCart() {
+      const cart = await idbPromise("cart", "get");
+      dispatch({ type: ADD_MULTIPLE_TO_CART, cart: [...cart] });
+    }
+
+    if (!state.cart.length) {
+      getCart();
+    }
+  }, [state.cart.length, dispatch]);
+
+  useEffect(() => {
     if (!open) {
       dispatch({ type: TOGGLE_CART });
     }
@@ -43,7 +55,6 @@ export default function Cart() {
     if (state.cartOpen) {
       setOpen(state.cartOpen);
     }
-   
   }, [state.cartOpen]);
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -98,48 +109,63 @@ export default function Cart() {
                             role="list"
                             className="-my-6 divide-y divide-gray"
                           >
-                            {products.map((product) => (
-                              <li key={product.id} className="flex py-6">
-                                <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray">
-                                  <img
-                                    src={product.imageSrc}
-                                    alt={product.imageAlt}
-                                    className="h-full w-full object-cover object-center"
-                                  />
-                                </div>
-
-                                <div className="ml-4 flex flex-1 flex-col">
-                                  <div>
-                                    <div className="flex justify-between text-base font-medium text-gray">
-                                      <h3>
-                                        <a href={product.href}>
-                                          {" "}
-                                          {product.name}{" "}
-                                        </a>
-                                      </h3>
-                                      <p className="ml-4">{product.price}</p>
+                            {state.cart.length ? (
+                              <div>
+                                {" "}
+                                {state.cart.map((item) => (
+                                  <li key={item._id} className="flex py-6">
+                                    <div className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-md border border-gray">
+                                      <img
+                                       src={`/images/${item.imageUrl}`}
+                                       
+                                        alt={item.name}
+                                        className="h-full w-full object-cover object-center"
+                                      />
                                     </div>
-                                    <p className="mt-1 text-sm text-gray">
-                                      {product.color}
-                                    </p>
-                                  </div>
-                                  <div className="flex flex-1 items-end justify-between text-sm">
-                                    <p className="text-gray">
-                                      Qty {product.quantity}
-                                    </p>
 
-                                    <div className="flex">
-                                      <button
-                                        type="button"
-                                        className="font-medium text-[#662B6D] hover:text-[#662B6D]"
-                                      >
-                                        Remove
-                                      </button>
+                                    <div className="ml-4 flex flex-1 flex-col">
+                                      <div>
+                                        <div className="flex justify-between text-base font-medium text-gray">
+                                          <h3>
+                                            <a href="#">
+                                              {" "}
+                                              {item.name}{" "}
+                                            </a>
+                                          </h3>
+                                          <p className="ml-4">
+                                            {item.price}
+                                          </p>
+                                        </div>
+                                        <p className="mt-1 text-sm text-gray">
+                                        
+                                        </p>
+                                      </div>
+                                      <div className="flex flex-1 items-end justify-between text-sm">
+                                        <p className="text-gray">
+                                          Qty {item.purchaseQuantity}
+                                        </p>
+
+                                        <div className="flex">
+                                          <button
+                                            type="button"
+                                            className="font-medium text-[#662B6D] hover:text-[#662B6D]"
+                                          >
+                                            Remove
+                                          </button>
+                                        </div>
+                                      </div>
                                     </div>
-                                  </div>
-                                </div>
-                              </li>
-                            ))}
+                                  </li>
+                                ))}
+                              </div>
+                            ) : (
+                              <h3 className="mt-0.5 text-sm text-gray">
+                                <span role="img" aria-label="shocked">
+                                  😱
+                                </span>
+                                You haven't added anything to your cart yet!
+                              </h3>
+                            )}
                           </ul>
                         </div>
                       </div>

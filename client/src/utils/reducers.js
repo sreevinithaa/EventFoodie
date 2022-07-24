@@ -30,7 +30,7 @@ export const reducer = (state, action) => {
     case ADD_MULTIPLE_TO_CART:
       return {
         ...state,
-        cart: [...state.cart, ...action.cart],
+        cart: [...action.cart],
       };
     // Returns a copy of state, sets the cartOpen to true and maps through the items in the cart.
     // If the item's `id` matches the `id` that was provided in the action.payload, we update the purchase quantity.
@@ -40,7 +40,7 @@ export const reducer = (state, action) => {
         cartOpen: true,
         cart: state.cart.map((item) => {
           if (action._id === item._id) {
-            item.qantity = action.qantity;
+            item.purchaseQuantity = action.purchaseQuantity;
           }
           return item;
         }),
