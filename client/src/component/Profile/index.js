@@ -40,10 +40,10 @@ export default function Profile() {
         phone: formState.phone,
       },
     });
-    console.log(mutationResponse);
+   
     if (mutationResponse) {
       setsuccess(true);
-      console.log(success);
+    
     }
   };
 
