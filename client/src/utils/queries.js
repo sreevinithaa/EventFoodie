@@ -67,11 +67,6 @@ export const QUERY_MY_ORDER = gql`
       orderNumber
       orderDate
       totalAmount
-      vendor {
-        _id
-        name
-        imageUrl
-      }
       orderItem {
         _id
         name
@@ -90,15 +85,15 @@ export const QUERY_ORDER = gql`
       _id
       orderNumber
       orderDate
+      totalAmount
       orderItem {
-        qantity
-        comboSize
-        comboDrink
-        menu {
-          name
-          imageUrl
-          price
-        }
+        _id
+        name
+        description
+        imageUrl
+        price
+        comboPrice
+        vendor
       }
     }
   }

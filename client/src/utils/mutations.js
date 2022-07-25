@@ -15,9 +15,10 @@ export const LOGIN = gql`
 `;
 
 export const ADD_ORDER = gql`
-  mutation addOrder($menu: [ID]!,$vendorId:ID) {
-    addOrder(menu:$menu,vendorId: $vendorId) {
+  mutation addOrder($totalAmount:Float,$orderItem: [ID]!) {
+    addOrder(totalAmount:$totalAmount,orderItem:$orderItem) {
       _id
+      orderNumber
       
     }
   }

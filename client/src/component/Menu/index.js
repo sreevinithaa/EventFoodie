@@ -53,7 +53,7 @@ const Menu = () => {
                 imageUrl={menu.imageUrl}
                 name={menu.name}
                 price={menu.price}
-                
+                vendor={id}
               />
             ))}{" "}
           </div>

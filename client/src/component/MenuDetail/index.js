@@ -13,7 +13,8 @@ function MenuDetail(menu) {
         _id,
         name,
         imageUrl,
-        price
+        price,
+        vendor
       } = menu;
     const addToCart = () => {
       const itemInCart = cart.find((cartItem) => cartItem._id === _id)

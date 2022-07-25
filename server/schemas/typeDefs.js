@@ -59,17 +59,9 @@ const typeDefs = gql`
     orderDate: String
     totalAmount:Float
     User: User
-    vendor: FoodVendors
     orderItem: [Menu]
   }
-  type OrderItem {
-    _id: ID
-    qantity: Int!
-    comboSize: String
-    comboDrink: String
-    order: Order
-    menu: Menu
-  }
+  
   type Checkout {
     session: ID
   }
@@ -95,7 +87,7 @@ const typeDefs = gql`
       userRole: String
       password: String!
     ): Auth
-    addOrder(menu: [ID]!, vendorId: ID): Order
+    addOrder(totalAmount:Float,orderItem: [ID]!): Order
     updateUser(
       firstName: String!
       lastName: String!
