@@ -11,13 +11,15 @@ import { setContext } from "@apollo/client/link/context";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
 import Login from "./pages/Login";
-import Home from "./pages/Home";
-import SignUp from "./pages/SignUp";
-import Program from "./pages/Program";
-import Vendors from "./pages/Vendors";
+import Dashboard from "./component/Dashboard";
+import Register from "./component/Register";
+import ProgramDetail from "./component/ProgramDetail";
+import VendorDetail from "./component/VendorDetail";
+import Profile from "./component/Profile";
 import Order from "./pages/Order";
-import MyOrder from "./pages/MyOrder";
+import MyOrderDetail from "./component/MyOrderDetail";
 import Success from "./pages/Success";
+import Cart from "./component/Cart/index";
 import { StoreProvider } from "./utils/GlobalState";
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -45,13 +47,14 @@ function App() {
           <Header />
           <div className="flex flex-col min-h-[82vh]">
             <Routes>
-              <Route exact path="/" element={<Home />} />
+              <Route exact path="/" element={<Dashboard />} />
               <Route exact path="/login" element={<Login />} />
-              <Route exact path="/signup" element={<SignUp />} />
-              <Route exact path="/program/:id" element={<Program />} />
-              <Route exact path="/vendors/:id" element={<Vendors />} />
+              <Route exact path="/signup" element={<Register />} />
+              <Route exact path="/program/:id" element={<ProgramDetail />} />
+              <Route exact path="/vendors/:id" element={<VendorDetail />} />
               <Route exact path="/order/:id" element={<Order />} />
-              <Route exact path="/myorder" element={<MyOrder />} />
+              <Route exact path="/profile" element={<Profile />} />
+              <Route exact path="/MyOrderDetail" element={<MyOrderDetail />} />
               <Route 
                 path="/success" 
                 element={<Success />} 
@@ -59,6 +62,7 @@ function App() {
             </Routes>
           </div>
           <Footer />
+          <Cart />
         </StoreProvider>
       </Router>
     </ApolloProvider>

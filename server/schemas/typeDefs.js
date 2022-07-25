@@ -99,7 +99,6 @@ const typeDefs = gql`
     updateUser(
       firstName: String!
       lastName: String!
-      email: String!
       phone: String
       userRole: String
       password: String!
