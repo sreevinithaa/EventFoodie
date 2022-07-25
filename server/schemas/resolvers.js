@@ -25,6 +25,12 @@ const resolvers = {
     vendor: async (parent, { _id }) => {
       return await FoodVendors.findById({ _id }).populate("menu");
     },
+    getUserVendor: async (parent, args,context) => {
+      if (context.user) {
+      return await FoodVendors.findOne({user: context.user._id }).populate("menu");
+      }
+      throw new AuthenticationError("Not logged in");
+    },
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id);

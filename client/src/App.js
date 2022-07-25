@@ -13,10 +13,13 @@ import Footer from "./component/Footer";
 import Login from "./pages/Login";
 import Dashboard from "./component/Dashboard";
 import Register from "./component/Register";
+import Menu from "./component/Menu";
 import ProgramDetail from "./component/ProgramDetail";
 import VendorDetail from "./component/VendorDetail";
 import Profile from "./component/Profile";
 import Order from "./pages/Order";
+import MenuPage from "./pages/MenuPage";
+import Vendor from "./pages/Vendor";
 import MyOrderDetail from "./component/MyOrderDetail";
 import Success from "./pages/Success";
 import Cart from "./component/Cart/index";
@@ -52,7 +55,10 @@ function App() {
               <Route exact path="/signup" element={<Register />} />
               <Route exact path="/program/:id" element={<ProgramDetail />} />
               <Route exact path="/vendors/:id" element={<VendorDetail />} />
-              <Route exact path="/order/:id" element={<Order />} />
+              <Route exact path="/orders" element={<Order />} />
+              <Route exact path="/order/:id" element={<Menu />} />
+              <Route exact path="/vendor" element={<Vendor />} />
+              <Route exact path="/menu" element={<MenuPage />} />
               <Route exact path="/profile" element={<Profile />} />
               <Route exact path="/MyOrderDetail" element={<MyOrderDetail />} />
               <Route 

@@ -72,6 +72,7 @@ const typeDefs = gql`
   type Query {
     events: [Event]
     vendor(_id: String): FoodVendors
+    getUserVendor:FoodVendors
     user: User
     myorder:[Order]
     order(_id:String): Order
@@ -95,6 +96,13 @@ const typeDefs = gql`
       userRole: String
       password: String!
     ): User
+    updateUserVendor(
+      name:String
+      description:String
+      imageUrl:String
+      StripeAccount:String
+      _id:String
+    ):FoodVendors
     login(email: String!, password: String!): Auth
   }
 `;

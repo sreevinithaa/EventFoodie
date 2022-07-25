@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
@@ -24,8 +24,9 @@ if (auth.loggedIn()) {
   } else if (profile.data.userRole == "Vendor") {
     navigation = [
       { name: "Dashboard", href: "/", current: true },
+      { name: "Vendor", href: "/vendor", current: false },
       { name: "Menu", href: "/menu", current: false },
-      { name: "Order", href: "/vorder", current: false },
+      { name: "Order", href: "/order", current: false },
     ];
   } else {
     navigation = [

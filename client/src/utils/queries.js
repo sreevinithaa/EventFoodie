@@ -78,6 +78,28 @@ export const QUERY_MY_ORDER = gql`
     }
   }
 `;
+export const QUERY_VENDOR_USER = gql`
+  query getUserVendor {
+    getUserVendor {
+      _id
+      name
+      description
+      imageUrl
+      StripeAccount
+      menu {
+        _id
+        name
+        description
+        imageUrl
+        price
+        isAvailable
+        comboPrice
+      }
+    }
+  }
+`;
+
+
 export const QUERY_ORDER = gql`
   query order($_id: String) {
     order(_id: $_id) {

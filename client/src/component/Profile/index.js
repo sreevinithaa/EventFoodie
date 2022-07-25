@@ -43,7 +43,9 @@ export default function Profile() {
    
     if (mutationResponse) {
       setsuccess(true);
-    
+      setTimeout(() => {
+        setsuccess(false);
+        }, 5000);
     }
   };
 
@@ -151,6 +153,7 @@ export default function Profile() {
                 </span>
                 Update
               </button>
+              
             </div>
           </form>
           {success ? (

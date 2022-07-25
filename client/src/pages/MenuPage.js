@@ -2,7 +2,7 @@ import React from "react";
 
 
 
-const Order = () => {
+const Menu = () => {
   return (
     <div>
      
@@ -10,4 +10,4 @@ const Order = () => {
     </div>
   );
 };
-export default Order;
+export default Menu;
