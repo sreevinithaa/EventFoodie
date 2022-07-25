@@ -30,7 +30,7 @@ if (auth.loggedIn()) {
   } else {
     navigation = [
       { name: "Dashboard", href: "/", current: true },
-      { name: "MyOrder", href: "/myorder", current: false },
+      { name: "MyOrder", href: "/MyOrderDetail", current: false },
     ];
   }
 } else {

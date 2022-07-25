@@ -27,15 +27,15 @@ const resolvers = {
     },
     user: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate(
-          "orders"
-        );
+        const user = await User.findById(context.user._id);
         return user;
       }
       throw new AuthenticationError("Not logged in");
     },
     myorder:async (parent, args,context) => {
-      return await Order.find({ customer:context.user._id }).populate("orderItem");
+      const orders=await Order.find({ customer:context.user._id }).populate("orderItem");
+      
+      return orders
     },
     order: async (parent, { _id }) => {
       return await Order.find({ _id: _id }).populate("orderItem");
@@ -101,9 +101,7 @@ const resolvers = {
         });
       
        
-        await User.findByIdAndUpdate(context.user._id, {
-          $push: { orders: order },
-        });
+        
 
         return order;
       }

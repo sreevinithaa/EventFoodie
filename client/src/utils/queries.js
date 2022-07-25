@@ -61,7 +61,7 @@ query user {
   }
 `;
 export const QUERY_MY_ORDER = gql`
-  query myorder {
+  query myorders {
     myorder {
       _id
       orderNumber
@@ -73,8 +73,7 @@ export const QUERY_MY_ORDER = gql`
         description
         imageUrl
         price
-        comboPrice
-        vendor
+        comboPrice        
       }
     }
   }

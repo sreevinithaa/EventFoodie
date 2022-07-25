@@ -11,21 +11,15 @@ function MyOrderDetail() {
 
   useEffect(() => {
     if (data) {
+      console.log(data.myorder);
+    
       dispatch({
         type: UPDATE_MY_ORDER,
         orders: data.myorder,
       });
-      data.myorder.forEach((order) => {
-        idbPromise("order", "put", order);
-      });
-    } else if (!loading) {
-      idbPromise("order", "get").then((orders) => {
-        dispatch({
-          type: UPDATE_MY_ORDER,
-          events: orders,
-        });
-      });
-    }
+    
+     
+    } 
   }, [data, loading]);
 
   if (state.orders.length === 0) {
@@ -38,7 +32,26 @@ function MyOrderDetail() {
       </div></div></div>;
   }
 
-  return <div></div>;
+  return (<table class="table-fixed w-[90%] border-[#662B6D] border-collapse border border-slate p-1 m-8">
+  <thead>
+    <tr className=" bg-[#662B6D] text-[#ffffff] rounded-xl">
+      <th className="p-2 border border-slate">Date</th>
+      <th className="p-2 border border-slate">Order Number</th>
+      <th className="p-2 border border-slate">Total Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+  {state.orders.map((order) => (
+    <tr>
+      <td className="p-2 border border-slate">{order.orderDate}</td>
+      <td className="p-2 border border-slate">{order.orderNumber}</td>
+      <td className="p-2 border border-slate">${order.totalAmount}</td>
+    </tr>))}
+   
+  </tbody>
+</table>)
+     
+
 }
 
 export default MyOrderDetail;

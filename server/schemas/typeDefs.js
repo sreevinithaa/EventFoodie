@@ -73,7 +73,7 @@ const typeDefs = gql`
     events: [Event]
     vendor(_id: String): FoodVendors
     user: User
-    myorder:Order
+    myorder:[Order]
     order(_id:String): Order
     checkout(menu: [ID]!): Checkout
   }
