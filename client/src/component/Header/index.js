@@ -25,7 +25,6 @@ if (auth.loggedIn()) {
     navigation = [
       { name: "Dashboard", href: "/", current: true },
       { name: "Vendor", href: "/vendor", current: false },
-      { name: "Menu", href: "/menu", current: false },
       { name: "Order", href: "/order", current: false },
     ];
   } else {

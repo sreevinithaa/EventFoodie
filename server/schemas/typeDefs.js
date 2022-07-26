@@ -76,10 +76,28 @@ const typeDefs = gql`
     user: User
     myorder:[Order]
     order(_id:String): Order
+    getMenu(_id:String):Menu
     checkout(menu: [ID]!): Checkout
   }
 
   type Mutation {
+    addMenu(
+      name:String!
+      description:String
+      imageUrl:String!
+      price:Float!
+      isAvailable:Boolean
+      comboPrice:Float
+         ):Menu
+    updateMenu(
+      _id:String
+      name:String!
+      description:String
+      imageUrl:String!
+      price:Float!
+      isAvailable:Boolean
+      comboPrice:Float
+         ):Menu
     addUser(
       firstName: String!
       lastName: String!

@@ -44,9 +44,9 @@ export default function Login() {
           <form className="mt-8 space-y-6" onSubmit={handleFormSubmit}>
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
-              <div className="mb-2">
-                <label  className="sr-only">
-                  Email address
+              <div className="mb-2 flex flex-row">
+                <label  className="w-[30%] text-sm text-[#662B6D] p-2 font-bold">
+                  Email 
                 </label>
                 <input
                   id="email"
@@ -59,8 +59,8 @@ export default function Login() {
                   placeholder="Email address"
                 />
               </div>
-              <div>
-                <label  className="sr-only">
+              <div className="mb-2 flex flex-row">
+                <label  className="w-[30%] text-sm text-[#662B6D] p-2 font-bold">
                   Password
                 </label>
                 <input

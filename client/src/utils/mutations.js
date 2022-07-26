@@ -51,6 +51,64 @@ export const ADD_USER = gql`
   }
 `;
 
+export const ADD_MENU = gql`
+  mutation addMenu(
+    $name: String!
+    $description: String
+    $imageUrl: String!
+    $price: Float!
+    $isAvailable: Boolean!
+    $comboPrice: Float
+  ) {
+    addMenu(
+      name: $name
+      description: $description
+      imageUrl: $imageUrl
+      price: $price
+      isAvailable: $isAvailable
+      comboPrice: $comboPrice
+    ) {
+      _id
+      name
+      description
+      imageUrl
+      price
+      isAvailable
+      comboPrice
+    }
+  }
+`;
+
+export const UPDATE_MENU = gql`
+  mutation updateMenu(
+    $name: String!
+    $description: String
+    $imageUrl: String!
+    $price: Float!
+    $isAvailable: Boolean!
+    $comboPrice: Float
+    $_id: String
+  ) {
+    updateMenu(
+      name: $name
+      description: $description
+      imageUrl: $imageUrl
+      price: $price
+      isAvailable: $isAvailable
+      comboPrice: $comboPrice
+      _id: $_id
+    ) {
+      _id
+      name
+      description
+      imageUrl
+      price
+      isAvailable
+      comboPrice
+    }
+  }
+`;
+
 export const UPDATE_USER_VENDOR = gql`
   mutation updateUserVendor(
     $name: String

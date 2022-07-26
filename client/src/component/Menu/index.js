@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useStoreContext } from "../../utils/GlobalState";
 import { UPDATE_MENU } from "../../utils/actions";
 import { useQuery } from "@apollo/client";

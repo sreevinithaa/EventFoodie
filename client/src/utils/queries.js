@@ -48,15 +48,14 @@ export const QUERY_VENDOR = gql`
 `;
 
 export const QUERY_USER = gql`
-query user {
-  user {   
+  query user {
+    user {
       _id
       firstName
       lastName
       email
       phone
       userRole
-    
     }
   }
 `;
@@ -73,8 +72,22 @@ export const QUERY_MY_ORDER = gql`
         description
         imageUrl
         price
-        comboPrice        
+        comboPrice
       }
+    }
+  }
+`;
+
+export const GET_NENU = gql`
+  query getMenus($_id: String) {
+    getMenu(_id: $_id) {
+      _id
+      name
+      description
+      imageUrl
+      price
+      isAvailable
+      comboPrice
     }
   }
 `;
@@ -98,7 +111,6 @@ export const QUERY_VENDOR_USER = gql`
     }
   }
 `;
-
 
 export const QUERY_ORDER = gql`
   query order($_id: String) {

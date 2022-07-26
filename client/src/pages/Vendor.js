@@ -62,7 +62,7 @@ const Vendor = () => {
   return (
     <div>
     <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+      <div className="max-w-lg w-full space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-[#662B6D]">
             Vendor Profile
@@ -70,8 +70,8 @@ const Vendor = () => {
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleFormSubmit}>
           <div>
-            <div className="mb-2">
-              <label className="sr-only">Name</label>
+            <div className="mb-2 flex flex-row">
+              <label className="w-[25%] text-sm text-[#662B6D] p-2 font-bold">Name</label>
               <input
                 id="name"
                 name="name"
@@ -83,8 +83,8 @@ const Vendor = () => {
                 placeholder="Name"
               />
             </div>
-            <div className="mb-2">
-              <label className="sr-only">Description</label>
+            <div className="mb-2 flex flex-row">
+              <label className="w-[25%] text-sm text-[#662B6D] p-2 font-bold">Description</label>
               <input
                 id="description"
                 onChange={handleChange}
@@ -96,8 +96,8 @@ const Vendor = () => {
                 placeholder="Description"
               />
             </div>
-            <div className="mb-2">
-              <label className="sr-only">Image</label>
+            <div className="mb-2 flex flex-row">
+              <label className="w-[25%] text-sm text-[#662B6D] p-2 font-bold">Image</label>
               <input
                 id="imageUrl"
                 onChange={handleChange}
@@ -109,8 +109,8 @@ const Vendor = () => {
                 placeholder="Image"
               />
             </div>
-            <div className="mb-2">
-              <label className="sr-only">StripeAccount</label>
+            <div className="mb-2 flex flex-row">
+              <label className="w-[25%] text-sm text-[#662B6D] p-2 font-bold">StripeAccount</label>
               <input
                 id="StripeAccount"
                 name="StripeAccount"
@@ -155,7 +155,7 @@ const Vendor = () => {
 
     
     </div>
-   <div className="w-[90%] text-center sm:text-right "><Link to="/" className="bg-[#662B6D] text-sm font-bold rounded-xl text-[#ffffff] p-3">  <FontAwesomeIcon
+   <div className="w-[90%] text-center sm:text-right "><Link to="/menu" className="bg-[#662B6D] text-sm font-bold rounded-xl text-[#ffffff] p-3">  <FontAwesomeIcon
                             icon={faPlus}
                             className="text-[#ffffff] font-bold"
                             size="lg" 
@@ -182,7 +182,7 @@ const Vendor = () => {
                   {menu.isAvailable ? "Yes" : "No"}
                 </td>
                 <td className="p-2 border text-center border-slate">
-                <Link to="/">  <FontAwesomeIcon
+                <Link to={`/menu/${menu._id}`}>  <FontAwesomeIcon
                             icon={faPencil}
                             className="text-[#662B6D]"
                             size="lg"

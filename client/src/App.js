@@ -59,6 +59,7 @@ function App() {
               <Route exact path="/order/:id" element={<Menu />} />
               <Route exact path="/vendor" element={<Vendor />} />
               <Route exact path="/menu" element={<MenuPage />} />
+              <Route exact path="/menu/:id" element={<MenuPage />} />
               <Route exact path="/profile" element={<Profile />} />
               <Route exact path="/MyOrderDetail" element={<MyOrderDetail />} />
               <Route 

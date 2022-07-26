@@ -38,7 +38,7 @@ export default function Register() {
   return (
     <>
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
+        <div className="max-w-lg w-full space-y-8">
           <div>
             <h2 className="mt-6 text-center text-3xl font-extrabold text-[#662B6D]">
               Register
@@ -47,8 +47,8 @@ export default function Register() {
           <form className="mt-8 space-y-6" onSubmit={handleFormSubmit}>
             <input type="hidden" name="remember" defaultValue="true" />
             <div>
-              <div className="mb-2">
-                <label className="sr-only">First Name</label>
+              <div className="mb-2 flex flex-row">
+                <label className="w-[25%] text-sm text-[#662B6D] p-2 font-bold">First Name</label>
                 <input
                   id="firstName"
                   name="firstName"
@@ -59,8 +59,8 @@ export default function Register() {
                   placeholder="First Name"
                 />
               </div>
-              <div className="mb-2">
-                <label className="sr-only">Last Name</label>
+              <div className="mb-2 flex flex-row">
+                <label className="w-[25%] text-sm text-[#662B6D] p-2 font-bold">Last Name</label>
                 <input
                   id="lastName"
                   onChange={handleChange}
@@ -71,8 +71,8 @@ export default function Register() {
                   placeholder="Last Name"
                 />
               </div>
-              <div className="mb-2">
-                <label className="sr-only">Role</label>
+              <div className="mb-2 flex flex-row">
+                <label className="w-[25%] text-sm text-[#662B6D] p-2 font-bold">Role</label>
                 <select
                   id="userRole"
                   name="userRole"
@@ -84,8 +84,8 @@ export default function Register() {
                   <option value="Host">Host</option>
                 </select>
               </div>
-              <div className="mb-2">
-                <label className="sr-only">Phone</label>
+              <div className="mb-2 flex flex-row">
+                <label className="w-[25%] text-sm text-[#662B6D] p-2 font-bold">Phone</label>
                 <input
                   id="phone"
                   name="phone"
@@ -96,8 +96,8 @@ export default function Register() {
                   placeholder="phone"
                 />
               </div>
-              <div className="mb-2">
-                <label className="sr-only">Email</label>
+              <div className="mb-2 flex flex-row">
+                <label className="w-[25%] text-sm text-[#662B6D] p-2 font-bold">Email</label>
                 <input
                   id="email"
                   name="email"
@@ -109,8 +109,8 @@ export default function Register() {
                   placeholder="Email address"
                 />
               </div>
-              <div className="mb-2">
-                <label htmlFor="password" className="sr-only">
+              <div className="mb-2 flex flex-row">
+                <label htmlFor="password" className="w-[25%] text-sm text-[#662B6D] p-2 font-bold">
                   Password
                 </label>
                 <input

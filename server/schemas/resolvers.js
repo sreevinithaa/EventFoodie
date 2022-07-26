@@ -8,6 +8,7 @@ const {
   Order,
   OrderItem,
 } = require("../models");
+const { countDocuments } = require("../models/Menu");
 const { signToken } = require("../utils/auth");
 const stripe = require("stripe")("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");
 
@@ -42,6 +43,12 @@ const resolvers = {
       const orders=await Order.find({ customer:context.user._id }).populate("orderItem");
       
       return orders
+    },
+    getMenu:async (parent, {_id},context) => {
+     
+      const menu=await Menu.findById({ _id });
+      console.log(menu);
+      return menu
     },
     order: async (parent, { _id }) => {
       return await Order.find({ _id: _id }).populate("orderItem");
@@ -118,6 +125,47 @@ const resolvers = {
     
       if (context.user) {
         return await User.findByIdAndUpdate(context.user._id, args, {
+          new: true,
+        });
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+    addMenu:async (parent, args, context) => {
+    
+      if (context.user) {
+        const foodvendor=await FoodVendors.findOne({user: context.user._id })
+        const menu= await Menu.create({...args,vendor:foodvendor._id});
+       
+        await FoodVendors.findByIdAndUpdate(foodvendor._id, { $push: { menu: menu } });
+        return menu;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+    updateMenu:async (parent, args, context) => {
+     
+      if (context.user) {
+        const menu= await Menu.findByIdAndUpdate(_id, {
+          name:args.name,
+          description:args.description,
+          imageUrl:args.imageUrl,
+          price:args.price,
+          isAvailable:args.isAvailable,
+          comboPrice:args.comboPrice
+        }, {
+          new: true,
+        });
+       
+        return menu;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+    updateUserVendor:async (parent, args, context) => {
+    
+      if (context.user) {
+        return await FoodVendors.findByIdAndUpdate(args._id, args, {
           new: true,
         });
       }

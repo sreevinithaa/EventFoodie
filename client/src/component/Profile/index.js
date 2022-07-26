@@ -68,8 +68,8 @@ export default function Profile() {
           </div>
           <form className="mt-8 space-y-6" onSubmit={handleFormSubmit}>
             <div>
-              <div className="mb-2">
-                <label className="sr-only">First Name</label>
+              <div className="mb-2 flex flex-row">
+                <label className="w-[25%] text-sm text-[#662B6D] p-2 font-bold">First Name</label>
                 <input
                   id="firstName"
                   name="firstName"
@@ -81,8 +81,8 @@ export default function Profile() {
                   placeholder="First Name"
                 />
               </div>
-              <div className="mb-2">
-                <label className="sr-only">Last Name</label>
+              <div className="mb-2 flex flex-row">
+                <label className="w-[25%] text-sm text-[#662B6D] p-2 font-bold">Last Name</label>
                 <input
                   id="lastName"
                   onChange={handleChange}
@@ -94,8 +94,8 @@ export default function Profile() {
                   placeholder="Last Name"
                 />
               </div>
-              <div className="mb-2">
-                <label className="sr-only">Role</label>
+              <div className="mb-2 flex flex-row">
+                <label className="w-[25%] text-sm text-[#662B6D] p-2 font-bold">Role</label>
                 <select
                   id="userRole"
                   name="userRole"
@@ -108,8 +108,8 @@ export default function Profile() {
                   <option value="Host">Host</option>
                 </select>
               </div>
-              <div className="mb-2">
-                <label className="sr-only">Phone</label>
+              <div className="mb-2 flex flex-row">
+                <label className="w-[25%] text-sm text-[#662B6D] p-2 font-bold">Phone</label>
                 <input
                   id="phone"
                   name="phone"
@@ -122,8 +122,8 @@ export default function Profile() {
                 />
               </div>
 
-              <div className="mb-2">
-                <label htmlFor="password" className="sr-only">
+              <div className="mb-2 flex flex-row">
+                <label htmlFor="password" className="w-[25%] text-sm text-[#662B6D] p-2 font-bold">
                   Password
                 </label>
                 <input
