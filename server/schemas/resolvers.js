@@ -10,7 +10,7 @@ const {
 } = require("../models");
 const { countDocuments } = require("../models/Menu");
 const { signToken } = require("../utils/auth");
-const stripe = require("stripe")("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");
+const stripe = require("stripe")(process.env.stripe_key_1);
 
 const resolvers = {
   Query: {
