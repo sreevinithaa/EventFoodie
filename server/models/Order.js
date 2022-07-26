@@ -17,9 +17,17 @@ const orderSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  totalAmount:{
+  totalAmount: {
     type: Number,
-    default:0
+    default: 0,
+  },
+  orderStatus: {
+    type: String,
+    default: "Open",
+  },
+  vendor: {
+    type: Schema.Types.ObjectId,
+    ref: "FoodVendors",
   },
   orderItem: [
     {
@@ -33,7 +41,6 @@ orderSchema.pre("save", async function (next) {
   if (this.isNew) {
     await this.constructor.find({}).then((orders) => {
       this.orderNumber = orders.length + 1;
-     
     });
   }
 

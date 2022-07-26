@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useStoreContext } from "../../utils/GlobalState";
 import { useQuery } from "@apollo/client";
 import { QUERY_MY_ORDER } from "../../utils/queries";
-import { idbPromise } from "../../utils/helpers";
+import { formatDate } from "../../utils/helpers";
 import { UPDATE_MY_ORDER } from "../../utils/actions";
 function MyOrderDetail() {
   const [state, dispatch] = useStoreContext();
@@ -36,16 +36,20 @@ function MyOrderDetail() {
   <thead>
     <tr className=" bg-[#662B6D] text-[#ffffff] rounded-xl">
       <th className="p-2 border border-slate">Date</th>
+      <th className="p-2 border border-slate">Vendor</th>
       <th className="p-2 border border-slate">Order Number</th>
       <th className="p-2 border border-slate">Total Amount</th>
+      <th className="p-2 border border-slate">Status</th>
     </tr>
   </thead>
   <tbody>
   {state.orders.map((order) => (
-    <tr>
-      <td className="p-2 border border-slate">{order.orderDate}</td>
+    <tr className="text-sm">
+      <td className="p-2 border border-slate">{formatDate(order.orderDate)}</td>
+      <td className="p-2 border border-slate">{order.vendor.name}</td>
       <td className="p-2 border border-slate">{order.orderNumber}</td>
       <td className="p-2 border border-slate">${order.totalAmount}</td>
+      <td className="p-2 border border-slate">{order.orderStatus}</td>
     </tr>))}
    
   </tbody>

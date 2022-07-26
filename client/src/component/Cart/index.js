@@ -13,7 +13,7 @@ import { QUERY_CHECKOUT } from "../../utils/queries";
 import { useLazyQuery } from "@apollo/client";
 import Auth from "../../utils/auth";
 // stripePromise returns a promise with the stripe object as soon as the Stripe package loads
-const stripePromise = loadStripe(process.env.stripe_key_2);
+const stripePromise = loadStripe("pk_live_51LOwnlLVtVzEZgGOUqNfs4Um107uPJr0o6tv2HJsZkngFexvZQ4g6wntcBDf2e3woOz5bYh03gmwc22Huk5xdov700ZaAZruzG");
 export default function Cart() {
   const [state, dispatch] = useStoreContext();
   const [open, setOpen] = useState(state.cartOpen);
@@ -147,7 +147,7 @@ export default function Cart() {
                                           <h3>
                                             <a href="#"> {item.name} </a>
                                           </h3>
-                                          <p className="ml-4">{item.price}</p>
+                                          <p className="ml-4">${item.price*item.purchaseQuantity}</p>
                                         </div>
                                         <p className="mt-1 text-sm text-gray"></p>
                                       </div>

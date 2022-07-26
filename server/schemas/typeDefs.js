@@ -57,7 +57,10 @@ const typeDefs = gql`
     _id: ID
     orderNumber: Int
     orderDate: String
+    orderStatus:String
+    customer:User
     totalAmount:Float
+    vendor:FoodVendors
     User: User
     orderItem: [Menu]
   }
@@ -72,6 +75,7 @@ const typeDefs = gql`
   type Query {
     events: [Event]
     vendor(_id: String): FoodVendors
+    getVendorOrder:[Order]
     getUserVendor:FoodVendors
     user: User
     myorder:[Order]
@@ -106,7 +110,7 @@ const typeDefs = gql`
       userRole: String
       password: String!
     ): Auth
-    addOrder(totalAmount:Float,orderItem: [ID]!): Order
+    addOrder(totalAmount:Float,vendor:String,orderItem: [ID]!): Order
     updateUser(
       firstName: String!
       lastName: String!

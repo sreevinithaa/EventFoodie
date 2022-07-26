@@ -8,9 +8,9 @@ const {
   Order,
   OrderItem,
 } = require("../models");
-const { countDocuments } = require("../models/Menu");
+
 const { signToken } = require("../utils/auth");
-const stripe = require("stripe")(process.env.stripe_key_1);
+const stripe = require("stripe")("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");
 
 const resolvers = {
   Query: {
@@ -23,7 +23,13 @@ const resolvers = {
         .populate("programs")
         .populate("vendors");
     },
-    vendor: async (parent, { _id }) => {
+    getVendorOrder: async (parent, args,context) => {
+      const foodvendor=await FoodVendors.findOne({user: context.user._id });
+      const order= await Order.find({vendor:foodvendor._id}).populate("orderItem").populate("customer");
+      console.log(order);
+      return order;
+    },
+       vendor: async (parent, { _id }) => {
       return await FoodVendors.findById({ _id }).populate("menu");
     },
     getUserVendor: async (parent, args,context) => {
@@ -40,7 +46,7 @@ const resolvers = {
       throw new AuthenticationError("Not logged in");
     },
     myorder:async (parent, args,context) => {
-      const orders=await Order.find({ customer:context.user._id }).populate("orderItem");
+      const orders=await Order.find({ customer:context.user._id }).populate("orderItem").populate("vendor");
       
       return orders
     },
@@ -51,7 +57,7 @@ const resolvers = {
       return menu
     },
     order: async (parent, { _id }) => {
-      return await Order.find({ _id: _id }).populate("orderItem");
+      return await Order.find({ _id: _id }).populate("orderItem").populate("customer");
     },
     checkout: async (parent, args, context) => {
       
@@ -109,11 +115,13 @@ const resolvers = {
         const order = await Order.create({
           totalAmount:args.totalAmount,
           orderItem:args.orderItem,
-          customer:context.user._id
+          customer:context.user._id,
+          vendor:args.vendor,
+          orderStatus:"Open"
          
         });
       
-       
+        await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
         
 
         return order;

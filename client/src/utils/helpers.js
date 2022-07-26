@@ -4,7 +4,13 @@ export function pluralize(name, count) {
     }
     return name + 's';
   }
-  
+  export function formatDate(datetime)
+  {
+    const d=new Date(parseInt(datetime));
+    const formattime=`${d.getDate()}/${d.getMonth()}/${d.getFullYear()} ${d.getHours()}: ${d.getMinutes()}`;
+   
+    return formattime;
+  }
   export function idbPromise(storeName, method, object) {
     return new Promise((resolve, reject) => {
       const request = window.indexedDB.open('eventfoodie', 1);

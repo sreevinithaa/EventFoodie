@@ -66,6 +66,10 @@ export const QUERY_MY_ORDER = gql`
       orderNumber
       orderDate
       totalAmount
+      orderStatus
+      vendor{
+        name
+      }
       orderItem {
         _id
         name
@@ -78,6 +82,29 @@ export const QUERY_MY_ORDER = gql`
   }
 `;
 
+
+export const GET_ORDER_FOR_VENDOR = gql`
+  query getVendorOrder {
+    getVendorOrder {
+      _id
+      orderNumber
+      customer {
+        firstName
+      }
+      orderDate
+      orderStatus
+      totalAmount
+      orderItem {
+        _id
+        name
+        description
+        imageUrl
+        price
+        comboPrice
+      }
+    }
+  }
+`;
 export const GET_NENU = gql`
   query getMenus($_id: String) {
     getMenu(_id: $_id) {
@@ -119,6 +146,7 @@ export const QUERY_ORDER = gql`
       orderNumber
       orderDate
       totalAmount
+      orderStatus
       orderItem {
         _id
         name

@@ -6,10 +6,12 @@ const {
   Event,
   FoodVendors,
   Menu,
+  Order
 } = require("../models");
 
 db.once("open", async () => {
   await User.deleteMany();
+  await Order.deleteMany();
   const saltRounds = 10;
   var password = await bcrypt.hash('123456', saltRounds);
   const customer = await User.insertMany([
