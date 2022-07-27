@@ -18,7 +18,8 @@ const Vendor = () => {
   const [updateUserVendor] = useMutation(UPDATE_USER_VENDOR);
   const { loading, data } = useQuery(QUERY_VENDOR_USER);
   const [success, setsuccess] = useState(false);
-
+console.log(loading);
+console.log(data);
   useEffect(() => {
     if (data) {
       setFormState({
@@ -175,9 +176,10 @@ const Vendor = () => {
           Add New Menu
         </Link>
       </div>
-      {loading ? (
+      {(loading)? (
         <></>
       ) : (
+        
         <table class="table-fixed text-sm w-[90%] border-[#662B6D] border-collapse border border-slate p-1 m-8">
           <thead>
             <tr className=" bg-[#662B6D] text-[#ffffff] rounded-xl">

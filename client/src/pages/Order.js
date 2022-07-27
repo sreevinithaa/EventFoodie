@@ -12,8 +12,7 @@ function Order() {
 
   useEffect(() => {
     if (data) {
-      console.log(data.getVendorOrder);
-
+    
       dispatch({
         type: UPDATE_MY_ORDER,
         orders: data.getVendorOrder,

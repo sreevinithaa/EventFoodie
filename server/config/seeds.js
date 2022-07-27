@@ -11,7 +11,7 @@ const {
 
 db.once("open", async () => {
   await User.deleteMany();
-  await Order.deleteMany();
+ 
   const saltRounds = 10;
   var password = await bcrypt.hash('123456', saltRounds);
   const customer = await User.insertMany([
@@ -213,9 +213,9 @@ db.once("open", async () => {
   await FoodVendors.deleteMany();
   const foodvendors = await FoodVendors.insertMany([
     {
-      name: "Burger King",
+      name: "Hedland Burger",
       description: `Choose Your Own Freshy made burger and drink `,
-      imageUrl: "subway-logo-new.png",
+      imageUrl: "hedlandburger.png",
       bankAccountId: "34565756",
       bankBSB: "354-345",
       bankAccountName: "BurgerKing",
@@ -223,9 +223,9 @@ db.once("open", async () => {
       menu: [menu[0]._id, menu[1]._id, menu[2]._id, menu[3]._id, menu[4]._id],
     },
     {
-      name: "Domino",
+      name: "Hedland Pizza",
       description: `Choose Your Own Freshy Baked pizza and drink `,
-      imageUrl: "domino.png",
+      imageUrl: "hedlandpizza.png",
       bankAccountId: "34565756",
       bankBSB: "354-345",
       bankAccountName: "domino",
@@ -241,9 +241,9 @@ db.once("open", async () => {
       ],
     },
     {
-      name: "SubWay",
+      name: "TasteWraps",
       description: `Choose Your Own Freshy Baked wraps and drink `,
-      imageUrl: "subway-logo-new.png",
+      imageUrl: "tasteWraps.png",
       bankAccountId: "34565756",
       bankBSB: "354-345",
       bankAccountName: "SubWay",
@@ -379,9 +379,26 @@ db.once("open", async () => {
   ]);
 
   console.log("event seeded");
+  await Order.deleteMany();
 
-
-  
-
+const order = await Order.insertMany([
+    {
+      orderNumber:1,
+      customer:customer[0]._id,
+      orderDate:date,
+      totalAmount:20,
+      orderStatus:"Open",
+      vendor:foodvendors[0]._id,
+      orderItem:[menu[0]._id,menu[1]._id]
+    },
+    {
+      orderNumber:2,
+      customer:customer[0]._id,
+      orderDate:date,
+      totalAmount:20,
+      orderStatus:"Open",
+      vendor:foodvendors[1]._id,
+      orderItem:[menu[5]._id]
+    }]);
   process.exit();
 });

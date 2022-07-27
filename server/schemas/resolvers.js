@@ -26,7 +26,7 @@ const resolvers = {
     getVendorOrder: async (parent, args,context) => {
       const foodvendor=await FoodVendors.findOne({user: context.user._id });
       const order= await Order.find({vendor:foodvendor._id}).populate("orderItem").populate("customer");
-      console.log(order);
+     
       return order;
     },
        vendor: async (parent, { _id }) => {
@@ -53,7 +53,7 @@ const resolvers = {
     getMenu:async (parent, {_id},context) => {
      
       const menu=await Menu.findById({ _id });
-      console.log(menu);
+     
       return menu
     },
     order: async (parent, { _id }) => {
@@ -154,7 +154,7 @@ const resolvers = {
     updateMenu:async (parent, args, context) => {
      
       if (context.user) {
-        const menu= await Menu.findByIdAndUpdate(_id, {
+        const menu= await Menu.findByIdAndUpdate(args._id, {
           name:args.name,
           description:args.description,
           imageUrl:args.imageUrl,

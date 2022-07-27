@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import { formatDate } from "../../utils/helpers";
 import { useStoreContext } from "../../utils/GlobalState";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowCircleDown, faBarsProgress, faClose, faTruckPickup, faSpider } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowCircleDown,
+  faBarsProgress,
+  faClose,
+  faTruckPickup,
+  faSpinner,
+} from "@fortawesome/free-solid-svg-icons";
 const OrderDetail = ({ orderNumber, id, totalAmount, orderDate }) => {
   const [state, dispatch] = useStoreContext();
 
@@ -13,13 +19,15 @@ const OrderDetail = ({ orderNumber, id, totalAmount, orderDate }) => {
     <div key={id}>
       <div className="flex justify-evenly flex-row  ">
         <div className="p-2 text-center text-sm">{formatDate(orderDate)}</div>
-        <div className="p-2 text-center text-sm">{order.customer.firstName}</div>
+        <div className="p-2 text-center text-sm">
+          {order.customer.firstName}
+        </div>
         <div className="p-2 text-center text-sm">{orderNumber}</div>
         <div className="p-2 text-center text-sm">${totalAmount}</div>
         <div className="p-2 text-center text-sm">{order.orderStatus}</div>
-        <div >
+        <div>
           <button
-          title="View Items"
+            title="View Items"
             type="button"
             className="mr-3"
             onClick={() => setToggleThisElement((prev) => !prev)}
@@ -29,38 +37,21 @@ const OrderDetail = ({ orderNumber, id, totalAmount, orderDate }) => {
               icon={faArrowCircleDown}
               className="text-[#662B6D]"
             />{" "}
-          </button> 
-          <button
-          title="Status to Progress"
-            type="button"
-           className="mr-3"
-          >
+          </button>
+          <button title="Status to Progress" type="button" className="mr-3">
             {" "}
-            <FontAwesomeIcon
-              icon={faBarsProgress}
-              className="text-[#662B6D]"
-            />{" "}
-          </button> 
-          <button
-            type="button"
-            title="Status to PickUp"
-            className="mr-3"
-          >
+            <FontAwesomeIcon icon={faSpinner} className="text-[#662B6D]" />{" "}
+          </button>
+          <button type="button" title="Status to PickUp" className="mr-3">
             {" "}
             <FontAwesomeIcon
               icon={faTruckPickup}
               className="text-[#662B6D]"
             />{" "}
           </button>
-          <button
-            type="button"
-            title="Status to Delivered"
-          >
+          <button type="button" title="Status to Delivered">
             {" "}
-            <FontAwesomeIcon
-              icon={faClose}
-              className="text-[#662B6D]"
-            />{" "}
+            <FontAwesomeIcon icon={faClose} className="text-[#662B6D]" />{" "}
           </button>
         </div>
       </div>

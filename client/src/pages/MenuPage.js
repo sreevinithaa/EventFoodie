@@ -41,11 +41,11 @@ const MenuPage = () => {
     }
   }, [data]);
   const handleFormSubmit = async (event) => {
-    console.log(formState);
+   
     event.preventDefault();
-    console.log(id);
+ 
     if (id) {
-      console.log("update");
+     
       const mutationResponse = await updateMenu({
         variables: {
           name: formState.name,
@@ -57,7 +57,7 @@ const MenuPage = () => {
           _id: id,
         },
       });
-      console.log(mutationResponse);
+    
       if (mutationResponse) {
         setsuccess(true);
         setTimeout(() => {
@@ -65,7 +65,7 @@ const MenuPage = () => {
         }, 5000);
       }
     } else {
-      console.log("update");
+     
       const mutationResponse = await addMenu({
         variables: {
           name: formState.name,
@@ -93,6 +93,14 @@ const MenuPage = () => {
       setFormState({
         ...formState,
         [name]: parseFloat(value),
+      });
+      
+    }
+    else if(name=="isAvailable")
+    {
+      setFormState({
+        ...formState,
+        [name]: event.target.checked,
       });
       
     }
@@ -177,7 +185,7 @@ const MenuPage = () => {
                 checked={formState.isAvailable}
                 onChange={handleChange}
                 type="checkbox"
-                required
+               
               />
             </div>
           </div>
