@@ -16,28 +16,28 @@ if (auth.loggedIn()) {
 
   if (profile.data.userRole == "Host") {
     navigation = [
-      { name: "Dashboard", href: "/", current: true },
-      { name: "Events", href: "#", current: false },
-      { name: "Vendor", href: "#", current: false },
+      { name: "Dashboard", href: "/" },
+      { name: "Events", href: "#"},
+      { name: "Vendor", href: "#" },
     
     ];
   } else if (profile.data.userRole == "Vendor") {
     navigation = [
-      { name: "Dashboard", href: "/", current: true },
-      { name: "Vendor", href: "/vendor", current: false },
-      { name: "Order", href: "/orders", current: false },
+      { name: "Dashboard", href: "/" },
+      { name: "Vendor", href: "/vendor"},
+      { name: "Order", href: "/orders" },
     ];
   } else {
     navigation = [
-      { name: "Dashboard", href: "/", current: true },
-      { name: "MyOrder", href: "/MyOrderDetail", current: false },
+      { name: "Dashboard", href: "/" },
+      { name: "MyOrder", href: "/MyOrderDetail" },
     ];
   }
 } else {
   navigation = [
-    { name: "Dashboard", href: "/", current: true },
-    { name: "SignUp", href: "/signup", current: true },
-    { name: "Login", href: "/login", current: true },
+    { name: "Dashboard", href: "/"},
+    { name: "SignUp", href: "/signup"},
+    { name: "Login", href: "/login" },
   ];
 }
 
@@ -88,7 +88,7 @@ const Header = () => {
                         key={item.name}
                         href={item.href}
                         className="text-[#662B6D] hover:text-[#7e7c7c] px-3 py-2 rounded-md text-sm font-medium leading-[5rem]"
-                        aria-current={item.current ? "page" : undefined}
+                       
                       >
                         {item.name}
                       </a>
@@ -181,7 +181,7 @@ const Header = () => {
                   as="a"
                   href={item.href}
                   className="block text-[#662B6D] hover:text-gray px-3 py-2 rounded-md text-base font-medium"
-                  aria-current={item.current ? "page" : undefined}
+                 
                 >
                   {item.name}
                 </Disclosure.Button>

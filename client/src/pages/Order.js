@@ -37,7 +37,7 @@ function Order() {
   }
 
   return (
-    <div class="w-[90%] border-[#662B6D] border-collapse border border-slate rounded-xl p-1 m-8">
+    <div className="w-[90%] border-[#662B6D] border-collapse border border-slate rounded-xl p-1 m-8">
       <div className="flex justify-evenly flex-row w-full bg-[#662B6D] text-[#ffffff] rounded-xl">
         <div className="p-2 text-sm ">Date</div>
         <div className="p-2 text-sm ">Customer</div>

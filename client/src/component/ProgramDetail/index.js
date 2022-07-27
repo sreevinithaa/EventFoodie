@@ -56,7 +56,7 @@ const ProgramDetail = () => {
             </Link>
           </div>
           {program.map((item) => (
-            <div className=" border-2 shadow-lg text-sm border-[#662B6D] m-3 rounded-xl">
+            <div key={item._id} className=" border-2 shadow-lg text-sm border-[#662B6D] m-3 rounded-xl">
               <div className="flex flex-row m-1">
                 <div className="font-bold p-1">Event : </div>
                 <div className="p-1">{item.name}</div>

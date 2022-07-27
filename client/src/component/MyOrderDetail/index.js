@@ -36,7 +36,7 @@ function MyOrderDetail() {
   }
 
   return (
-    <div class="w-[90%] border-[#662B6D] border-collapse border border-slate rounded-xl p-1 m-8">
+    <div className="w-[90%] border-[#662B6D] border-collapse border border-slate rounded-xl p-1 m-8">
       <div className="flex justify-evenly flex-row w-full bg-[#662B6D] text-[#ffffff] rounded-xl">
         <div className="p-2 text-sm ">Date</div>
         <div className="p-2 text-sm ">Vendor</div>
@@ -84,8 +84,8 @@ const OrderDetail = ({ id }) => {
       </div>
       <div className="flex flex-col">
         {toggleThisElement && (
-          <div>
-            <table class="table-fixed text-sm w-[90%] border-[#662B6D] border-collapse border border-slate p-1 m-8">
+          <div id={id}>
+            <table className="table-fixed text-sm w-[90%] border-[#662B6D] border-collapse border border-slate p-1 m-8">
               <thead>
                 <tr className=" bg-[#662B6D] text-[#ffffff] rounded-xl">
                   <th className="p-2 border border-slate">Name</th>
@@ -94,7 +94,7 @@ const OrderDetail = ({ id }) => {
               </thead>
               <tbody>
                 {order.orderItem.map((menu) => (
-                  <tr>
+                  <tr key={menu._id}>
                     <td className="p-2 border text-center border-slate">
                       {menu.name}
                     </td>

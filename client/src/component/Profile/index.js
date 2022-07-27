@@ -158,10 +158,10 @@ export default function Profile() {
           </form>
           {success ? (
             <div role="alert">
-              <div class="bg-[#be77c6] text-[#662B6D] font-bold rounded-t  border-[#764c7a]  px-4 py-2">
+              <div className="bg-[#be77c6] text-[#662B6D] font-bold rounded-t  border-[#764c7a]  px-4 py-2">
                 Success
               </div>
-              <div class="border border-t-0 border-[#764c7a] rounded-b bg-[#f2ddf5] px-4 py-3 text-[#662B6D]">
+              <div className="border border-t-0 border-[#764c7a] rounded-b bg-[#f2ddf5] px-4 py-3 text-[#662B6D]">
                 <p>Profile updated !</p>
               </div>
             </div>
