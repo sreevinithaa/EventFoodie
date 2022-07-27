@@ -41,17 +41,23 @@ Run the following command at th root of your project and check the app
 
 ## Image
 
-![screendhot_1](./client/src/components/img/screenshot1.png)
-![screendhot_2](./client/src/components/img/screenshot2.png)
+![screendhot_1](./client/public/images/screenshot_1.png)
+![screendhot_2](./client/public/images/screenshot_2.png)
+![screendhot_3](./client/public/images/screenshot_3.png)
+![screendhot_4](./client/public/images/screenshot_4.png)
+![screendhot_5](./client/public/images/screenshot_5.png)
+![screendhot_6](./client/public/images/screenshot_6.png)
+![screendhot_7](./client/public/images/screenshot_7.png)
+
 
 
 ## Repository
 
-You can get the code in the following link. https://github.com/sreevinithaa/ecommerce_redux.git
+You can get the code in the following link. https://github.com/sreevinithaa/EventFoodie.git
 
 ## Production
 
-You can check the app in following link. https://shopnshop.herokuapp.com/
+You can check the app in following link. https://eventfoodie.herokuapp.com/
 
 
 ## Questions
