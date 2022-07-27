@@ -2,8 +2,6 @@
 ## Table of Contents
 
 - [Description](#description)
-- [User Story](#user-story)
-- [Acceptance Criteria](#acceptance-criteria)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Image](#image)
@@ -14,32 +12,9 @@
 
 ## Description
 
- This is an eCommerce app which will allow user to signup and login to the app.Logged in user can buy items and can checkout the cart. 
-
-## User Story
+ This app is very helpfull for the public to spend their leasure time with families and friends rather than spending time standing in the que to order food.This app enables public to view the events comming up ,view program of the event,view food vendors,view their menu and order food.This app is helpfull to track the order.The update of the order is sent to customer's mobile via text message.
 
 
-```md
-AS a senior engineer working on an e-commerce platform
-I WANT my platform to use Redux to manage global state instead of the Context API
-SO THAT my website's state management is taken out of the React ecosystem
-```
-
-## Acceptance Criteria
-
-```md
-GIVEN an e-commerce platform that uses Redux to manage global state
-WHEN I review the app’s store
-THEN I find that the app uses a Redux store instead of the Context API
-WHEN I review the way the React front end accesses the store
-THEN I find that the app uses a Redux provider
-WHEN I review the way the app determines changes to its global state
-THEN I find that the app passes reducers to a Redux store instead of using the Context API
-WHEN I review the way the app extracts state data from the store
-THEN I find that the app uses Redux instead of the Context API
-WHEN I review the way the app dispatches actions
-THEN I find that the app uses Redux instead of the Context API
-```
 
 ## Installation
 
