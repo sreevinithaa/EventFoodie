@@ -11,7 +11,7 @@ const {
 
 const { signToken } = require("../utils/auth");
 const stripe = require("stripe")("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");
-
+const { SendMessage } = require('../utils/messageAPI');
 const resolvers = {
   Query: {
     events: async () => {
@@ -108,6 +108,15 @@ const resolvers = {
 
       return { token, user };
     },
+    updateOrder:async (parent, args, context) => {
+          
+       const order= await Order.findByIdAndUpdate(args._id, { orderStatus:args.orderStatus }).populate("customer").populate("vendor");      
+       if(order)
+       {
+        SendMessage(order.customer.phone,order.orderNumber,order.orderStatus,order.vendor.name);
+       }
+        return order;     
+    },
     addOrder: async (parent, args, context) => {
       
       if (context.user) {
@@ -121,8 +130,11 @@ const resolvers = {
          
         });
       
-        await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
-        
+        const user=await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
+        if(order)
+       {
+        SendMessage(user.phone,order.orderNumber,order.orderStatus,'');
+       }
 
         return order;
       }

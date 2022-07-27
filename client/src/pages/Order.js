@@ -1,24 +1,26 @@
-import React, { useEffect } from "react";
-
+import React, { useEffect, useState } from "react";
 
 import { useStoreContext } from "../utils/GlobalState";
-import { useQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import { GET_ORDER_FOR_VENDOR } from "../utils/queries";
 import { UPDATE_MY_ORDER } from "../utils/actions";
 import OrderDetail from "../component/OrderDetail";
 function Order() {
   const [state, dispatch] = useStoreContext();
-  const { loading, data } = useQuery(GET_ORDER_FOR_VENDOR);
+  const [getVendorOrder, { data }] = useLazyQuery(GET_ORDER_FOR_VENDOR);
+  const [isUpdate, setisUpdate] = useState(false);
 
   useEffect(() => {
+    getVendorOrder();
+  }, [isUpdate]);
+  useEffect(() => {
     if (data) {
-    
       dispatch({
         type: UPDATE_MY_ORDER,
         orders: data.getVendorOrder,
       });
     }
-  }, [data, loading]);
+  }, [data]);
 
   if (state.orders.length === 0) {
     return (
@@ -48,10 +50,10 @@ function Order() {
       {state.orders.map((order) => (
         <div className="flex flex-col">
           <OrderDetail
+            setisUpdate={setisUpdate}
             id={order._id}
-            orderNumber={order.orderNumber}
-            totalAmount={order.totalAmount}
-            orderDate={order.orderDate}
+            isUpdate={isUpdate}
+         
           />
         </div>
       ))}

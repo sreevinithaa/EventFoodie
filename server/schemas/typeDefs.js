@@ -85,6 +85,8 @@ const typeDefs = gql`
   }
 
   type Mutation {
+    updateOrder( _id:String
+      orderStatus:String!):Order
     addMenu(
       name:String!
       description:String

@@ -2,28 +2,42 @@ import React, { useEffect, useState } from "react";
 import { formatDate } from "../../utils/helpers";
 import { useStoreContext } from "../../utils/GlobalState";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useMutation } from "@apollo/client";
+
+import { UPDATE_ORDER } from "../../utils/mutations";
 import {
   faArrowCircleDown,
-  faBarsProgress,
   faClose,
   faTruckPickup,
   faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
-const OrderDetail = ({ orderNumber, id, totalAmount, orderDate }) => {
+
+const OrderDetail = ({ id, setisUpdate,isUpdate }) => {
+ 
   const [state, dispatch] = useStoreContext();
-
+  const [updateOrder] = useMutation(UPDATE_ORDER);
   const order = [...state.orders].find((m) => m._id == id);
-
+  const updateStatus=async(id,status)=>
+  {
+    const mutationResponse = await updateOrder({
+      variables: {
+        _id: id,
+        orderStatus:status       
+      },
+      
+    });
+    setisUpdate(!isUpdate);
+  }
   const [toggleThisElement, setToggleThisElement] = useState(false);
   return (
     <div key={id}>
       <div className="flex justify-evenly flex-row  ">
-        <div className="p-2 text-center text-sm">{formatDate(orderDate)}</div>
+        <div className="p-2 text-center text-sm">{formatDate(order.orderDate)}</div>
         <div className="p-2 text-center text-sm">
           {order.customer.firstName}
         </div>
-        <div className="p-2 text-center text-sm">{orderNumber}</div>
-        <div className="p-2 text-center text-sm">${totalAmount}</div>
+        <div className="p-2 text-center text-sm">{order.orderNumber}</div>
+        <div className="p-2 text-center text-sm">${order.totalAmount}</div>
         <div className="p-2 text-center text-sm">{order.orderStatus}</div>
         <div>
           <button
@@ -38,18 +52,18 @@ const OrderDetail = ({ orderNumber, id, totalAmount, orderDate }) => {
               className="text-[#662B6D]"
             />{" "}
           </button>
-          <button title="Status to Progress" type="button" className="mr-3">
+          <button title="Status to Progress" type="button" className="mr-3" onClick={()=>updateStatus(order._id,'Preparing')}>
             {" "}
             <FontAwesomeIcon icon={faSpinner} className="text-[#662B6D]" />{" "}
           </button>
-          <button type="button" title="Status to PickUp" className="mr-3">
+          <button type="button" title="Status to PickUp" className="mr-3" onClick={()=>updateStatus(order._id,'Ready')}>
             {" "}
             <FontAwesomeIcon
               icon={faTruckPickup}
               className="text-[#662B6D]"
             />{" "}
           </button>
-          <button type="button" title="Status to Delivered">
+          <button type="button" title="Status to Delivered" onClick={()=>updateStatus(order._id,'Delivered')}>
             {" "}
             <FontAwesomeIcon icon={faClose} className="text-[#662B6D]" />{" "}
           </button>

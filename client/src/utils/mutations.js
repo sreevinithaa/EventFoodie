@@ -15,8 +15,12 @@ export const LOGIN = gql`
 `;
 
 export const ADD_ORDER = gql`
-  mutation addOrder($totalAmount: Float,$vendor:String, $orderItem: [ID]!) {
-    addOrder(totalAmount: $totalAmount,vendor:$vendor, orderItem: $orderItem) {
+  mutation addOrder($totalAmount: Float, $vendor: String, $orderItem: [ID]!) {
+    addOrder(
+      totalAmount: $totalAmount
+      vendor: $vendor
+      orderItem: $orderItem
+    ) {
       _id
       orderNumber
     }
@@ -105,6 +109,14 @@ export const UPDATE_MENU = gql`
       price
       isAvailable
       comboPrice
+    }
+  }
+`;
+export const UPDATE_ORDER = gql`
+  mutation updateOrder($orderStatus: String!, $_id: String) {
+    updateOrder(_id: $_id, orderStatus: $orderStatus) {
+      _id
+      orderNumber
     }
   }
 `;
