@@ -29,6 +29,13 @@ module.exports = {
         ". Its ready to pickup.Enjoy ! .Your order number is " +
         orderNumber;
     } else {
+      message =
+      "Your order status has been changed to " +
+      status +
+      " in " +
+      vendor +
+      ". Your order number is " +
+      orderNumber;
       return;
     }
     var controller = lib.MessagesController;
