@@ -61,13 +61,13 @@ const Dashboard = () => {
                 </div>
                 <Link
                   to={`/program/${event._id}`}
-                  className=" text-sm h-7 p-2 px-3 mr-10 text-[#662B6D] transition-colors duration-150 border border-[#662B6D] rounded-lg focus:shadow-outline hover:bg-[#662B6D] hover:text-[#ffffff]"
+                  className=" text-sm h-7 p-2 px-3 mr-10 text-purple transition-colors duration-150 border border-purple rounded-lg focus:shadow-outline hover:bg-purple hover:text-white"
                 >
                   Event Program
                 </Link>
                 <Link
                   to={`/vendors/${event._id}`}
-                  className="text-sm h-7 p-2 px-3 text-[#662B6D] transition-colors duration-150 border border-[#662B6D] rounded-lg focus:shadow-outline hover:bg-[#662B6D] hover:text-[#ffffff]"
+                  className="text-sm h-7 p-2 px-3 text-purple transition-colors duration-150 border border-purple rounded-lg focus:shadow-outline hover:bg-purple hover:text-white"
                 >
                   Food Vendors
                 </Link>

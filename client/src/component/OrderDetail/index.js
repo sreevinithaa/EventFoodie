@@ -49,32 +49,32 @@ const OrderDetail = ({ id, setisUpdate,isUpdate }) => {
             {" "}
             <FontAwesomeIcon
               icon={faArrowCircleDown}
-              className="text-[#662B6D]"
+              className="text-purple"
             />{" "}
           </button>
           <button title="Status to Progress" type="button" className="mr-3" onClick={()=>updateStatus(order._id,'Preparing')}>
             {" "}
-            <FontAwesomeIcon icon={faSpinner} className="text-[#662B6D]" />{" "}
+            <FontAwesomeIcon icon={faSpinner} className="text-purple" />{" "}
           </button>
           <button type="button" title="Status to PickUp" className="mr-3" onClick={()=>updateStatus(order._id,'Ready')}>
             {" "}
             <FontAwesomeIcon
               icon={faTruckPickup}
-              className="text-[#662B6D]"
+              className="text-purple"
             />{" "}
           </button>
           <button type="button" title="Status to Delivered" onClick={()=>updateStatus(order._id,'Delivered')}>
             {" "}
-            <FontAwesomeIcon icon={faClose} className="text-[#662B6D]" />{" "}
+            <FontAwesomeIcon icon={faClose} className="text-purple" />{" "}
           </button>
         </div>
       </div>
       <div className="flex flex-col">
         {toggleThisElement && (
           <div>
-            <table className="table-fixed text-sm w-[90%] border-[#662B6D] border-collapse border border-slate p-1 m-8">
+            <table className="table-fixed text-sm w-[90%] border-purple border-collapse border border-slate p-1 m-8">
               <thead>
-                <tr className=" bg-[#662B6D] text-[#ffffff] rounded-xl">
+                <tr className=" bg-purple text-white rounded-xl">
                   <th className="p-2 border border-slate">Name</th>
                   <th className="p-2 border border-slate">Price</th>
                 </tr>

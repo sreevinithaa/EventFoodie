@@ -5,7 +5,7 @@ export default function SignUp() {
   return (
     <div>
       <Register />
-      <Cart />
+     
     </div>
   );
 }

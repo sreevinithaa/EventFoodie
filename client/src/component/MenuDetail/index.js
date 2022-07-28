@@ -51,7 +51,7 @@ function MenuDetail(menu) {
     </p>
    
     <div className=" flex justify-end w-full">
-      <button onClick={addToCart} className="h-7 px-3 mr-1 text-[#662B6D] transition-colors duration-150 border border-[#662B6D] rounded-lg focus:shadow-outline hover:bg-[#662B6D] hover:text-[#ffffff]">
+      <button onClick={addToCart} className="h-7 px-3 mr-1 text-purple transition-colors duration-150 border border-purple rounded-lg focus:shadow-outline hover:bg-purple hover:text-white">
         Add Cart
       </button>
     </div>

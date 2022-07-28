@@ -45,18 +45,18 @@ const VendorDetail = () => {
             <Link
               to="/"
               type="button"
-              className="mt-1 ml-3 inline-block px-6 py-2.5 bg-[#662B6D] text-[#ffffff] font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#935899] hover:shadow-lg focus:bg-[#935899] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#935899] active:shadow-lg transition duration-150 ease-in-out"
+              className="mt-1 ml-3 inline-block px-6 py-2.5 bg-purple text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#935899] hover:shadow-lg focus:bg-[#935899] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#935899] active:shadow-lg transition duration-150 ease-in-out"
             >
               {" "}
               <FontAwesomeIcon
                 icon={faArrowLeft}
-                className="text-[#ffffff]"
+                className="text-white"
               />{" "}
               Back
             </Link>
           </div>
           {vendors.map((item) => (
-            <div key={item._id} className="flex flex-row justify-evenly	 border-2 shadow-lg text-sm border-[#662B6D] m-3 rounded-xl">
+            <div key={item._id} className="flex flex-row justify-evenly	 border-2 shadow-lg text-sm border-purple m-3 rounded-xl">
              <div className=" max-w-[10rem]"> <img
             src={`/images/${item.imageUrl}`}
             alt={item.name}
@@ -71,7 +71,7 @@ const VendorDetail = () => {
                 <div className="font-bold p-1">Description : </div>
                 <div className=" p-1">{item.description}</div>
               </div>
-              <div className="flex flex-row m-1 justify-end"> <Link to={`/order/${item._id}`} className="inline-block px-6 py-2.5 bg-[#662B6D] text-[#ffffff] font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#662B6D] hover:shadow-lg focus:bg-[#662B6D] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#662B6D] active:shadow-lg transition duration-150 ease-in-out">Make Order</Link></div>
+              <div className="flex flex-row m-1 justify-end"> <Link to={`/order/${item._id}`} className="inline-block px-6 py-2.5 bg-purple text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple hover:shadow-lg focus:bg-purple focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple active:shadow-lg transition duration-150 ease-in-out">Make Order</Link></div>
               </div>
             </div>
           ))}

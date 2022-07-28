@@ -103,7 +103,7 @@ export default function Cart() {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <div className="flex h-full flex-col overflow-y-scroll bg-[#ffffff] shadow-xl">
+                  <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                     <div className="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
                       <div className="flex items-start justify-between">
                         <Dialog.Title className="text-lg font-medium text-gray">
@@ -160,7 +160,7 @@ export default function Cart() {
                                           <button
                                             type="button"
                                             onClick={() => removeFromCart(item)}
-                                            className="font-medium text-[#662B6D] hover:text-[#662B6D]"
+                                            className="font-medium text-purple hover:text-purple"
                                           >
                                             Remove
                                           </button>
@@ -196,7 +196,7 @@ export default function Cart() {
                             <a
                               href="#"
                               onClick={submitCheckout}
-                              className="flex items-center justify-center rounded-md border border-transparent bg-[#662B6D] px-6 py-3 text-base font-medium text-[#ffffff] shadow-sm hover:bg-[#662B6D]"
+                              className="flex items-center justify-center rounded-md border border-transparent bg-purple px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-purple"
                             >
                               Checkout
                             </a>
@@ -209,7 +209,7 @@ export default function Cart() {
                             or{" "}
                             <button
                               type="button"
-                              className="font-medium text-[#662B6D] hover:text-[#662B6D]"
+                              className="font-medium text-purple hover:text-purple"
                               onClick={() => setOpen(false)}
                             >
                               Continue Shopping

@@ -26,7 +26,7 @@ function MyOrderDetail() {
       <div className="min-h-full flex items-center  justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full  space-y-8">
           <div>
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-[#662B6D]">
+            <h2 className="mt-6 text-center text-3xl font-extrabold text-purple">
               No order available
             </h2>
           </div>
@@ -36,8 +36,8 @@ function MyOrderDetail() {
   }
 
   return (
-    <div className="w-[90%] border-[#662B6D] border-collapse border border-slate rounded-xl p-1 m-8">
-      <div className="flex justify-evenly flex-row w-full bg-[#662B6D] text-[#ffffff] rounded-xl">
+    <div className="w-[90%] border-purple border-collapse border border-slate rounded-xl p-1 m-8">
+      <div className="flex justify-evenly flex-row w-full bg-purple text-white rounded-xl">
         <div className="p-2 text-sm ">Date</div>
         <div className="p-2 text-sm ">Vendor</div>
         <div className="p-2 text-sm ">Order Number</div>
@@ -77,7 +77,7 @@ const OrderDetail = ({ id }) => {
             {" "}
             <FontAwesomeIcon
               icon={faArrowCircleDown}
-              className="text-[#662B6D]"
+              className="text-purple"
             />{" "}
           </button>
         </div>
@@ -85,9 +85,9 @@ const OrderDetail = ({ id }) => {
       <div className="flex flex-col">
         {toggleThisElement && (
           <div id={id}>
-            <table className="table-fixed text-sm w-[90%] border-[#662B6D] border-collapse border border-slate p-1 m-8">
+            <table className="table-fixed text-sm w-[90%] border-purple border-collapse border border-slate p-1 m-8">
               <thead>
-                <tr className=" bg-[#662B6D] text-[#ffffff] rounded-xl">
+                <tr className=" bg-purple text-white rounded-xl">
                   <th className="p-2 border border-slate">Name</th>
                   <th className="p-2 border border-slate">Price</th>
                 </tr>

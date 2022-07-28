@@ -41,7 +41,7 @@ const Menu = () => {
     <div className="bg-white">
       <div className="max-w-2xl mx-auto py-8 px-4 sm:py-8 sm:px-6 lg:max-w-7xl lg:px-8">
         <div>
-          <h2 className=" sm:py-10 text-left text-3xl font-extrabold text-[#662B6D]">
+          <h2 className=" sm:py-10 text-left text-3xl font-extrabold text-purple">
             {data.vendor.name} - Menu
           </h2>
         </div>

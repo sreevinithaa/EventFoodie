@@ -5,7 +5,7 @@ const MyOrder = () => {
   return (
     <div>
       <MyOrderDetail />
-      <Cart />
+    
     </div>
   );
 };

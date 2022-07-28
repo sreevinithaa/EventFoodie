@@ -65,14 +65,14 @@ console.log(data);
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-lg w-full space-y-8">
           <div>
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-[#662B6D]">
+            <h2 className="mt-6 text-center text-3xl font-extrabold text-purple">
               Vendor Profile
             </h2>
           </div>
           <form className="mt-8 space-y-6" onSubmit={handleFormSubmit}>
             <div>
               <div className="mb-2 flex flex-row">
-                <label className="w-[25%] text-sm text-[#662B6D] p-2 font-bold">
+                <label className="w-[25%] text-sm text-purple p-2 font-bold">
                   Name
                 </label>
                 <input
@@ -82,12 +82,12 @@ console.log(data);
                   type="text"
                   onChange={handleChange}
                   required
-                  className="appearance-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-[#662B6D] focus:border-[#662B6D] focus:z-10 sm:text-sm"
+                  className="appearance-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-purple focus:border-purple focus:z-10 sm:text-sm"
                   placeholder="Name"
                 />
               </div>
               <div className="mb-2 flex flex-row">
-                <label className="w-[25%] text-sm text-[#662B6D] p-2 font-bold">
+                <label className="w-[25%] text-sm text-purple p-2 font-bold">
                   Description
                 </label>
                 <input
@@ -97,12 +97,12 @@ console.log(data);
                   name="description"
                   type="text"
                   required
-                  className="appearance-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-[#662B6D] focus:border-[#662B6D] focus:z-10 sm:text-sm"
+                  className="appearance-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-purple focus:border-purple focus:z-10 sm:text-sm"
                   placeholder="Description"
                 />
               </div>
               <div className="mb-2 flex flex-row">
-                <label className="w-[25%] text-sm text-[#662B6D] p-2 font-bold">
+                <label className="w-[25%] text-sm text-purple p-2 font-bold">
                   Image
                 </label>
                 <input
@@ -112,12 +112,12 @@ console.log(data);
                   name="imageUrl"
                   type="text"
                   required
-                  className="appearance-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-[#662B6D] focus:border-[#662B6D] focus:z-10 sm:text-sm"
+                  className="appearance-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-purple focus:border-purple focus:z-10 sm:text-sm"
                   placeholder="Image"
                 />
               </div>
               <div className="mb-2 flex flex-row">
-                <label className="w-[25%] text-sm text-[#662B6D] p-2 font-bold">
+                <label className="w-[25%] text-sm text-purple p-2 font-bold">
                   StripeAccount
                 </label>
                 <input
@@ -127,7 +127,7 @@ console.log(data);
                   onChange={handleChange}
                   type="text"
                   required
-                  className="appearance-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-[#662B6D] focus:border-[#662B6D] focus:z-10 sm:text-sm"
+                  className="appearance-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-purple focus:border-purple focus:z-10 sm:text-sm"
                   placeholder="phone"
                 />
               </div>
@@ -136,11 +136,11 @@ console.log(data);
             <div>
               <button
                 type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-[#ffffff] bg-[#662B6D] hover:bg-[#662B6D] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#662B6D]"
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple hover:bg-purple focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple"
               >
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                   <LockClosedIcon
-                    className="h-5 w-5 text-[#662B6D]-500 group-hover:text-[#662B6D]-400"
+                    className="h-5 w-5 text-purple-500 group-hover:text-purple-400"
                     aria-hidden="true"
                   />
                 </span>
@@ -150,10 +150,10 @@ console.log(data);
           </form>
           {success ? (
             <div role="alert">
-              <div className="bg-[#be77c6] text-[#662B6D] font-bold rounded-t  border-[#764c7a]  px-4 py-2">
+              <div className="bg-[#be77c6] text-purple font-bold rounded-t  border-[#764c7a]  px-4 py-2">
                 Success
               </div>
-              <div className="border border-t-0 border-[#764c7a] rounded-b bg-[#f2ddf5] px-4 py-3 text-[#662B6D]">
+              <div className="border border-t-0 border-[#764c7a] rounded-b bg-[#f2ddf5] px-4 py-3 text-purple">
                 <p>Profile updated !</p>
               </div>
             </div>
@@ -165,12 +165,12 @@ console.log(data);
       <div className="w-[90%] text-center sm:text-right ">
         <Link
           to="/menu"
-          className="bg-[#662B6D] text-sm font-bold rounded-xl text-[#ffffff] p-3"
+          className="bg-purple text-sm font-bold rounded-xl text-white p-3"
         >
           {" "}
           <FontAwesomeIcon
             icon={faPlus}
-            className="text-[#ffffff] font-bold"
+            className="text-white font-bold"
             size="lg"
           />{" "}
           Add New Menu
@@ -180,9 +180,9 @@ console.log(data);
         <></>
       ) : (
         
-        <table className="table-fixed text-sm w-[90%] border-[#662B6D] border-collapse border border-slate p-1 m-8">
+        <table className="table-fixed text-sm w-[90%] border-purple border-collapse border border-slate p-1 m-8">
           <thead>
-            <tr className=" bg-[#662B6D] text-[#ffffff] rounded-xl">
+            <tr className=" bg-purple text-white rounded-xl">
               <th className="p-2 border border-slate">Name</th>
               <th className="p-2 border border-slate">Price</th>
               <th className="p-2 border border-slate">Available</th>
@@ -202,7 +202,7 @@ console.log(data);
                     {" "}
                     <FontAwesomeIcon
                       icon={faPencil}
-                      className="text-[#662B6D]"
+                      className="text-purple"
                       size="lg"
                     />
                   </Link>

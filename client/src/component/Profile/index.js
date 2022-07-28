@@ -62,14 +62,14 @@ export default function Profile() {
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div>
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-[#662B6D]">
+            <h2 className="mt-6 text-center text-3xl font-extrabold text-purple">
               Profile
             </h2>
           </div>
           <form className="mt-8 space-y-6" onSubmit={handleFormSubmit}>
             <div>
               <div className="mb-2 flex flex-row">
-                <label className="w-[25%] text-sm text-[#662B6D] p-2 font-bold">First Name</label>
+                <label className="w-[25%] text-sm text-purple p-2 font-bold">First Name</label>
                 <input
                   id="firstName"
                   name="firstName"
@@ -77,12 +77,12 @@ export default function Profile() {
                   type="text"
                   onChange={handleChange}
                   required
-                  className="appearance-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-[#662B6D] focus:border-[#662B6D] focus:z-10 sm:text-sm"
+                  className="appearance-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-purple focus:border-purple focus:z-10 sm:text-sm"
                   placeholder="First Name"
                 />
               </div>
               <div className="mb-2 flex flex-row">
-                <label className="w-[25%] text-sm text-[#662B6D] p-2 font-bold">Last Name</label>
+                <label className="w-[25%] text-sm text-purple p-2 font-bold">Last Name</label>
                 <input
                   id="lastName"
                   onChange={handleChange}
@@ -90,18 +90,18 @@ export default function Profile() {
                   name="lastName"
                   type="text"
                   required
-                  className="appearance-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-[#662B6D] focus:border-[#662B6D] focus:z-10 sm:text-sm"
+                  className="appearance-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-purple focus:border-purple focus:z-10 sm:text-sm"
                   placeholder="Last Name"
                 />
               </div>
               <div className="mb-2 flex flex-row">
-                <label className="w-[25%] text-sm text-[#662B6D] p-2 font-bold">Role</label>
+                <label className="w-[25%] text-sm text-purple p-2 font-bold">Role</label>
                 <select
                   id="userRole"
                   name="userRole"
                   value={formState.userRole}
                   onChange={handleChange}
-                  className="appearance-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-[#662B6D] focus:border-[#662B6D] focus:z-10 sm:text-sm"
+                  className="appearance-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-purple focus:border-purple focus:z-10 sm:text-sm"
                 >
                   <option value="Public">Public</option>
                   <option value="Vendor">Vendor</option>
@@ -109,7 +109,7 @@ export default function Profile() {
                 </select>
               </div>
               <div className="mb-2 flex flex-row">
-                <label className="w-[25%] text-sm text-[#662B6D] p-2 font-bold">Phone</label>
+                <label className="w-[25%] text-sm text-purple p-2 font-bold">Phone</label>
                 <input
                   id="phone"
                   name="phone"
@@ -117,13 +117,13 @@ export default function Profile() {
                   onChange={handleChange}
                   type="text"
                   required
-                  className="appearance-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-[#662B6D] focus:border-[#662B6D] focus:z-10 sm:text-sm"
+                  className="appearance-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-purple focus:border-purple focus:z-10 sm:text-sm"
                   placeholder="phone"
                 />
               </div>
 
               <div className="mb-2 flex flex-row">
-                <label htmlFor="password" className="w-[25%] text-sm text-[#662B6D] p-2 font-bold">
+                <label htmlFor="password" className="w-[25%] text-sm text-purple p-2 font-bold">
                   Password
                 </label>
                 <input
@@ -134,7 +134,7 @@ export default function Profile() {
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="appearance-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-[#662B6D] focus:border-[#662B6D] focus:z-10 sm:text-sm"
+                  className="appearance-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-purple focus:border-purple focus:z-10 sm:text-sm"
                   placeholder="Password"
                 />
               </div>
@@ -143,11 +143,11 @@ export default function Profile() {
             <div>
               <button
                 type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-[#ffffff] bg-[#662B6D] hover:bg-[#662B6D] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#662B6D]"
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple hover:bg-purple focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple"
               >
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                   <LockClosedIcon
-                    className="h-5 w-5 text-[#662B6D]-500 group-hover:text-[#662B6D]-400"
+                    className="h-5 w-5 text-purple-500 group-hover:text-purple-400"
                     aria-hidden="true"
                   />
                 </span>
@@ -158,10 +158,10 @@ export default function Profile() {
           </form>
           {success ? (
             <div role="alert">
-              <div className="bg-[#be77c6] text-[#662B6D] font-bold rounded-t  border-[#764c7a]  px-4 py-2">
+              <div className="bg-[#be77c6] text-purple font-bold rounded-t  border-[#764c7a]  px-4 py-2">
                 Success
               </div>
-              <div className="border border-t-0 border-[#764c7a] rounded-b bg-[#f2ddf5] px-4 py-3 text-[#662B6D]">
+              <div className="border border-t-0 border-[#764c7a] rounded-b bg-white px-4 py-3 text-purple">
                 <p>Profile updated !</p>
               </div>
             </div>
