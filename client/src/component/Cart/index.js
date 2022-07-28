@@ -12,14 +12,17 @@ import { loadStripe } from "@stripe/stripe-js";
 import { QUERY_CHECKOUT } from "../../utils/queries";
 import { useLazyQuery } from "@apollo/client";
 import Auth from "../../utils/auth";
+
 // stripePromise returns a promise with the stripe object as soon as the Stripe package loads
-const stripePromise = loadStripe("pk_live_51LOwnlLVtVzEZgGOUqNfs4Um107uPJr0o6tv2HJsZkngFexvZQ4g6wntcBDf2e3woOz5bYh03gmwc22Huk5xdov700ZaAZruzG");
+const stripePromise = loadStripe(`${process.env.REACT_APP_STRIPE_KEY_2}`);
+
 export default function Cart() {
   const [state, dispatch] = useStoreContext();
   const [open, setOpen] = useState(state.cartOpen);
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
   useEffect(() => {
     if (data) {
+      console.log(data);
       stripePromise.then((res) => {
         res.redirectToCheckout({ sessionId: data.checkout.session });
       });

@@ -8,11 +8,11 @@ const {
   Order,
   OrderItem,
 } = require("../models");
-
+const dotenv = require("dotenv");
 const { signToken } = require("../utils/auth");
-const stripe = require("stripe")(process.env.STRIPE_KEY_1);
+const stripe = require("stripe")(`${process.env.STRIPE_KEY_1}`);
 const { SendMessage } = require("../utils/messageAPI");
-
+dotenv.config();
 const resolvers = {
   Query: {
     //checking the startdate enddate with current date to get active events
@@ -89,17 +89,19 @@ const resolvers = {
           description: orderItem[i].description,
           images: [`${url}/images/${orderItem[i].imageUrl}`],
         });
-
+        
         const price = await stripe.prices.create({
           product: product.id,
           unit_amount: orderItem[i].price * 100,
-          currency: "usd",
+          currency: "aud",
         });
-
+      
+      
         line_items.push({
           price: price.id,
           quantity: 1,
         });
+       
       }
 
       const session = await stripe.checkout.sessions.create({
@@ -109,7 +111,7 @@ const resolvers = {
         success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${url}/`,
       });
-
+     
       return { session: session.id };
     },
   },

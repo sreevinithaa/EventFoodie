@@ -1,8 +1,10 @@
 const lib = require("messagemedia-messages-sdk");
+const dotenv = require("dotenv");
+dotenv.config();
 const enable_messaging = process.env.ENABLE_MESSAGE || false;
 /* Basic Auth */
-lib.Configuration.basicAuthUserName = process.env.MM_USERNAME;
-lib.Configuration.basicAuthPassword = process.env.MM_PASSWORD;
+lib.Configuration.basicAuthUserName = `${process.env.MM_USERNAME}`;
+lib.Configuration.basicAuthPassword = `${process.env.MM_PASSWORD}`;
 module.exports = {
   SendMessage: function (to, orderNumber, status, vendor) {
     //if environment variable set to false sending message functionality will get disabled
