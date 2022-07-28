@@ -1,14 +1,17 @@
 const lib = require("messagemedia-messages-sdk");
 const enable_messaging = process.env.ENABLE_MESSAGE || false;
 /* Basic Auth */
-lib.Configuration.basicAuthUserName = "ssPVt6ExQvDHn7LLQ55M";
-lib.Configuration.basicAuthPassword = "VM5oNvMbav146abZ2fDBVUoA4p6md5";
+lib.Configuration.basicAuthUserName = process.env.MM_USERNAME;
+lib.Configuration.basicAuthPassword = process.env.MM_PASSWORD;
 module.exports = {
   SendMessage: function (to, orderNumber, status, vendor) {
+    //if environment variable set to false sending message functionality will get disabled
     if (!enable_messaging) {
       return;
     }
     let message = status;
+
+    //Based on order status load messages
     if (status == "Open") {
       message =
         "Your order has been placed. Your order number is " + orderNumber;
@@ -30,12 +33,12 @@ module.exports = {
         orderNumber;
     } else {
       message =
-      "Your order status has been changed to " +
-      status +
-      " in " +
-      vendor +
-      ". Your order number is " +
-      orderNumber;
+        "Your order status has been changed to " +
+        status +
+        " in " +
+        vendor +
+        ". Your order number is " +
+        orderNumber;
       return;
     }
     var controller = lib.MessagesController;
@@ -48,13 +51,15 @@ module.exports = {
 
     body.messages[0].content = message;
     body.messages[0].destinationNumber = to;
-//message media sending text message functionality
-    controller.sendMessages(body, function (error, response, context) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log(response);
-      }
-    });
+    //message media sending text message functionality
+    if (enable_messaging) {
+      controller.sendMessages(body, function (error, response, context) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log(response);
+        }
+      });
+    }
   },
 };

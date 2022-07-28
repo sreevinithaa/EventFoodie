@@ -52,7 +52,7 @@ const Header = () => {
    
   }
   return (
-    <Disclosure as="nav" className="pb-2 border-b-4 border-[#662B6D]">
+    <Disclosure as="nav" className="pb-2 border-b-4 border-purple">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -87,7 +87,7 @@ const Header = () => {
                       <a
                         key={item.name}
                         href={item.href}
-                        className="text-[#662B6D] hover:text-[#7e7c7c] px-3 py-2 rounded-md text-sm font-medium leading-[5rem]"
+                        className="text-purple hover:text-[#7e7c7c] px-3 py-2 rounded-md text-sm font-medium leading-[5rem]"
                        
                       >
                         {item.name}
@@ -101,12 +101,12 @@ const Header = () => {
                 {auth.loggedIn() === true ? (
                   <Menu as="div" className="ml-3 relative">
                     <div>
-                      <Menu.Button className="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#662B6D] focus:ring-[#662B6D]">
+                      <Menu.Button className="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-purple focus:ring-purple">
                         <span className="sr-only">Open user menu</span>
-                        <div className="m-1 mr-2 w-12 h-12 relative flex justify-center items-center rounded-full bg-[#662B6D] text-xl text-white uppercase">
+                        <div className="m-1 mr-2 w-12 h-12 relative flex justify-center items-center rounded-full bg-purple text-xl text-white uppercase">
                           <FontAwesomeIcon
                             icon={faUser}
-                            className="text-[#ffffff]"
+                            className="text-white"
                             size="lg"
                           />
                         </div>
@@ -121,13 +121,13 @@ const Header = () => {
                       leaveFrom="transform opacity-100 scale-100"
                       leaveTo="transform opacity-0 scale-95"
                     >
-                      <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-[#662B6D] ring-opacity-5 focus:outline-none">
+                      <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-purple ring-opacity-5 focus:outline-none">
                         <Menu.Item>
                           {({ active }) => (
                             <a
                               href="/profile"
                               className={classNames(
-                                active ? "bg-[#662B6D] text-[#ffffff]" : "",
+                                active ? "bg-purple text-white" : "",
                                 "block px-4 py-2 text-sm text-gray"
                               )}
                             >
@@ -142,7 +142,7 @@ const Header = () => {
                               href="/"
                               onClick={() => auth.logout()}
                               className={classNames(
-                                active ? "bg-[#662B6D] text-[#ffffff]" : "",
+                                active ? "bg-purple text-white" : "",
                                 "block px-4 py-2 text-sm text-gray"
                               )}
                             >
@@ -159,12 +159,12 @@ const Header = () => {
                 <button
                   type="button"
                   onClick={toggleCart}
-                  className="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#662B6D] focus:ring-[#662B6D]"
+                  className="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-purple focus:ring-purple"
                 >
-                  <div className="m-1 mr-2 w-12 h-12 relative flex justify-center items-center rounded-full bg-[#662B6D] text-xl text-white uppercase">
+                  <div className="m-1 mr-2 w-12 h-12 relative flex justify-center items-center rounded-full bg-purple text-xl text-white uppercase">
                     <FontAwesomeIcon
                       icon={faCartShopping}
-                      className="text-[#ffffff]"
+                      className="text-white"
                       size="lg"
                     />
                   </div>
@@ -180,7 +180,7 @@ const Header = () => {
                   key={item.name}
                   as="a"
                   href={item.href}
-                  className="block text-[#662B6D] hover:text-gray px-3 py-2 rounded-md text-base font-medium"
+                  className="block text-purple hover:text-gray px-3 py-2 rounded-md text-base font-medium"
                  
                 >
                   {item.name}

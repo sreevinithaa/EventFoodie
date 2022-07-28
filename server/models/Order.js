@@ -37,6 +37,8 @@ const orderSchema = new Schema({
     },
   ],
 });
+
+// set up pre-save middleware to generate order number
 orderSchema.pre("save", async function (next) {
   if (this.isNew) {
     await this.constructor.find({}).then((orders) => {
