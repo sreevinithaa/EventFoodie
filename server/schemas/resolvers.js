@@ -1,16 +1,15 @@
 const { AuthenticationError } = require("apollo-server-express");
 const {
   User,
-  EventProgram,
-  Event,
+ Event,
   FoodVendors,
   Menu,
   Order,
-  OrderItem,
+ 
 } = require("../models");
 const dotenv = require("dotenv");
 const { signToken } = require("../utils/auth");
-const stripe = require("stripe")(`${process.env.STRIPE_KEY_1}`);
+const stripe = require("stripe")("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");
 const { SendMessage } = require("../utils/messageAPI");
 dotenv.config();
 const resolvers = {
@@ -77,6 +76,7 @@ const resolvers = {
     },
     //checkout to stripe
     checkout: async (parent, args, context) => {
+      console.log(process.env.STRIPE_KEY_1);
       const url = new URL(context.headers.referer).origin;
       const order = new Order({ orderItem: args.menu });
       const line_items = [];
@@ -84,23 +84,31 @@ const resolvers = {
       const { orderItem } = await order.populate("orderItem").execPopulate();
 
       for (let i = 0; i < orderItem.length; i++) {
-        const product = await stripe.products.create({
-          name: orderItem[i].name,
-          description: orderItem[i].description,
-          images: [`${url}/images/${orderItem[i].imageUrl}`],
-        });
+        try
+        {
+          const product = await stripe.products.create({
+            name: orderItem[i].name,
+            description: orderItem[i].description,
+            images: [`${url}/images/${orderItem[i].imageUrl}`],
+          });
+          console.log("success2");
+          const price = await stripe.prices.create({
+            product: product.id,
+            unit_amount: orderItem[i].price * 100,
+            currency: "aud",
+          });
         
-        const price = await stripe.prices.create({
-          product: product.id,
-          unit_amount: orderItem[i].price * 100,
-          currency: "aud",
-        });
-      
-      
-        line_items.push({
-          price: price.id,
-          quantity: 1,
-        });
+          console.log("success3");
+          line_items.push({
+            price: price.id,
+            quantity: 1,
+          });
+         console.log(line_items);
+        }
+        catch(e)
+        {
+console.log(e);
+        }
        
       }
 

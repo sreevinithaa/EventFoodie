@@ -1,24 +1,23 @@
 import { LockClosedIcon } from "@heroicons/react/solid";
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
 
-import { LOGIN } from '../utils/mutations';
-import Auth from '../utils/auth';
+import { LOGIN } from "../utils/mutations";
+import Auth from "../utils/auth";
 export default function Login() {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error }] = useMutation(LOGIN);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      console.log(formState);
       const mutationResponse = await login({
         variables: { email: formState.email, password: formState.password },
-      
       });
-      console.log(mutationResponse);
-      const token = mutationResponse.data.login.token;
-      Auth.login(token);
+      if (mutationResponse) {
+        const token = mutationResponse.data.login.token;
+        Auth.login(token);
+      }
     } catch (e) {
       console.log(e);
     }
@@ -45,8 +44,8 @@ export default function Login() {
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
               <div className="mb-2 flex flex-row">
-                <label  className="w-[30%] text-sm text-purple p-2 font-bold">
-                  Email 
+                <label className="w-[30%] text-sm text-purple p-2 font-bold">
+                  Email
                 </label>
                 <input
                   id="email"
@@ -60,7 +59,7 @@ export default function Login() {
                 />
               </div>
               <div className="mb-2 flex flex-row">
-                <label  className="w-[30%] text-sm text-purple p-2 font-bold">
+                <label className="w-[30%] text-sm text-purple p-2 font-bold">
                   Password
                 </label>
                 <input
@@ -91,6 +90,7 @@ export default function Login() {
               </button>
             </div>
           </form>
+          
         </div>
       </div>
     </>

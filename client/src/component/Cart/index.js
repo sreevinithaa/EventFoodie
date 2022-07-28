@@ -14,7 +14,7 @@ import { useLazyQuery } from "@apollo/client";
 import Auth from "../../utils/auth";
 
 // stripePromise returns a promise with the stripe object as soon as the Stripe package loads
-const stripePromise = loadStripe(`${process.env.REACT_APP_STRIPE_KEY_2}`);
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY_2);
 
 export default function Cart() {
   const [state, dispatch] = useStoreContext();
