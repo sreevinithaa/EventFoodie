@@ -25,8 +25,10 @@ const OrderDetail = ({ id, setisUpdate,isUpdate }) => {
         orderStatus:status       
       },
       
+    }).then(()=>{
+      setisUpdate(!isUpdate);
     });
-    setisUpdate(!isUpdate);
+   
   }
   const [toggleThisElement, setToggleThisElement] = useState(false);
   return (

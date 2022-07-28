@@ -7,11 +7,11 @@ import { UPDATE_MY_ORDER } from "../utils/actions";
 import OrderDetail from "../component/OrderDetail";
 function Order() {
   const [state, dispatch] = useStoreContext();
-  const [getVendorOrder, { data }] = useLazyQuery(GET_ORDER_FOR_VENDOR);
+  const [getVendorOrder, { data }] = useLazyQuery(GET_ORDER_FOR_VENDOR,{fetchPolicy: 'network-only',});
   const [isUpdate, setisUpdate] = useState(false);
 
   useEffect(() => {
-    getVendorOrder();
+     getVendorOrder();
   }, [isUpdate]);
   useEffect(() => {
     if (data) {
@@ -20,7 +20,7 @@ function Order() {
         orders: data.getVendorOrder,
       });
     }
-  }, [data]);
+  }, [data,isUpdate]);
 
   if (state.orders.length === 0) {
     return (
