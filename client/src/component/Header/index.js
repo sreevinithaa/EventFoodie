@@ -17,9 +17,7 @@ if (auth.loggedIn()) {
   if (profile.data.userRole == "Host") {
     navigation = [
       { name: "Dashboard", href: "/" },
-      { name: "Events", href: "#"},
-      { name: "Vendor", href: "#" },
-    
+        
     ];
   } else if (profile.data.userRole == "Vendor") {
     navigation = [
