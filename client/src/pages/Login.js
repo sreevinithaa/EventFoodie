@@ -7,7 +7,8 @@ import Auth from "../utils/auth";
 export default function Login() {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error }] = useMutation(LOGIN);
-
+  const [alert, setalert] =useState(0);
+let message="";
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -19,6 +20,8 @@ export default function Login() {
         Auth.login(token);
       }
     } catch (e) {
+      setalert(1);
+      message=e.error;
       console.log(e);
     }
   };
@@ -90,7 +93,16 @@ export default function Login() {
               </button>
             </div>
           </form>
-          
+          {alert==0?<></>:
+          <div
+            className="bg-red border text-white px-4 py-3 rounded relative"
+            role="alert"
+          >
+            <strong className="font-bold">Login Fail !</strong>
+            <span className="block sm:inline">
+            Incorrect Credentials
+            </span>
+          </div>}
         </div>
       </div>
     </>

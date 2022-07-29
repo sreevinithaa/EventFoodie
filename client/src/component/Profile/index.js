@@ -15,8 +15,8 @@ export default function Profile() {
   });
   const [updateUser] = useMutation(UPDATE_USER);
   const { loading, data } = useQuery(QUERY_USER);
-  const [success, setsuccess] =useState(false);
-
+  const [success, setsuccess] = useState(false);
+  const [errors, seterrors] = useState();
   useEffect(() => {
     if (data) {
       setFormState({
@@ -31,22 +31,37 @@ export default function Profile() {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const mutationResponse = await updateUser({
-      variables: {
-        password: formState.password,
-        firstName: formState.firstName,
-        lastName: formState.lastName,
-        userRole: formState.userRole,
-        phone: formState.phone,
-      },
-    });
-   
-    if (mutationResponse) {
-      setsuccess(true);
-      setTimeout(() => {
-        setsuccess(false);
-        }, 5000);
+    const PHONE_REGEX = new RegExp(/^\+61\d{9}/);
+    if (PHONE_REGEX.test(formState.phone)) {
+      
+      seterrors(null);
+    } else {
+      
+      seterrors("Invalid phone number. Please try again.");
+      return false;
     }
+    try{
+      const mutationResponse = await updateUser({
+        variables: {
+          password: formState.password,
+          firstName: formState.firstName,
+          lastName: formState.lastName,
+          userRole: formState.userRole,
+          phone: formState.phone,
+        },
+      });
+  
+      if (mutationResponse) {
+        setsuccess(true);
+        setTimeout(() => {
+          setsuccess(false);
+        }, 5000);
+      }
+    }
+    catch (e) {
+      seterrors("Error occured while saving record! Please try again");
+    }
+    
   };
 
   const handleChange = (event) => {
@@ -69,7 +84,9 @@ export default function Profile() {
           <form className="mt-8 space-y-6" onSubmit={handleFormSubmit}>
             <div>
               <div className="mb-2 flex flex-row">
-                <label className="w-[25%] text-sm text-purple p-2 font-bold">First Name</label>
+                <label className="w-[25%] text-sm text-purple p-2 font-bold">
+                  First Name
+                </label>
                 <input
                   id="firstName"
                   name="firstName"
@@ -82,7 +99,9 @@ export default function Profile() {
                 />
               </div>
               <div className="mb-2 flex flex-row">
-                <label className="w-[25%] text-sm text-purple p-2 font-bold">Last Name</label>
+                <label className="w-[25%] text-sm text-purple p-2 font-bold">
+                  Last Name
+                </label>
                 <input
                   id="lastName"
                   onChange={handleChange}
@@ -95,7 +114,9 @@ export default function Profile() {
                 />
               </div>
               <div className="mb-2 flex flex-row">
-                <label className="w-[25%] text-sm text-purple p-2 font-bold">Role</label>
+                <label className="w-[25%] text-sm text-purple p-2 font-bold">
+                  Role
+                </label>
                 <select
                   id="userRole"
                   name="userRole"
@@ -109,7 +130,9 @@ export default function Profile() {
                 </select>
               </div>
               <div className="mb-2 flex flex-row">
-                <label className="w-[25%] text-sm text-purple p-2 font-bold">Phone</label>
+                <label className="w-[25%] text-sm text-purple p-2 font-bold">
+                  Phone
+                </label>
                 <input
                   id="phone"
                   name="phone"
@@ -123,7 +146,10 @@ export default function Profile() {
               </div>
 
               <div className="mb-2 flex flex-row">
-                <label htmlFor="password" className="w-[25%] text-sm text-purple p-2 font-bold">
+                <label
+                  htmlFor="password"
+                  className="w-[25%] text-sm text-purple p-2 font-bold"
+                >
                   Password
                 </label>
                 <input
@@ -153,7 +179,6 @@ export default function Profile() {
                 </span>
                 Update
               </button>
-              
             </div>
           </form>
           {success ? (
@@ -167,6 +192,15 @@ export default function Profile() {
             </div>
           ) : (
             <></>
+          )}
+           {!!errors && (
+            <div
+              className="bg-red border text-white px-4 py-3 rounded relative"
+              role="alert"
+            >
+              <strong className="font-bold">Error ! </strong>
+              <span className="block sm:inline">{errors}</span>
+            </div>
           )}
         </div>
       </div>

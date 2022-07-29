@@ -5,26 +5,40 @@ import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
-
 export default function Register() {
-  const [formState, setFormState] = useState({ email: "", password: "" ,userRole:'Public'});
+  const [formState, setFormState] = useState({
+    email: "",
+    password: "",
+    userRole: "Public",
+  });
   const [addUser] = useMutation(ADD_USER);
-
+  const [errors, seterrors] = useState();
   const handleFormSubmit = async (event) => {
-   
     event.preventDefault();
-    const mutationResponse = await addUser({
-      variables: {
-        email: formState.email,
-        password: formState.password,
-        firstName: formState.firstName,
-        lastName: formState.lastName,
-        userRole: formState.userRole,
-        phone: formState.phone,
-      },
-    });
-    const token = mutationResponse.data.addUser.token;
-    Auth.login(token);
+    const PHONE_REGEX = new RegExp(/^\+61\d{9}/);
+    if (PHONE_REGEX.test(formState.phone)) {
+      seterrors(null);
+    } else {
+      seterrors("Invalid phone number. Please try again.");
+      return false;
+    }
+
+    try {
+      const mutationResponse = await addUser({
+        variables: {
+          email: formState.email,
+          password: formState.password,
+          firstName: formState.firstName,
+          lastName: formState.lastName,
+          userRole: formState.userRole,
+          phone: formState.phone,
+        },
+      });
+      const token = mutationResponse.data.addUser.token;
+      Auth.login(token);
+    } catch (e) {
+      seterrors("Duplicate User! Please try different email address");
+    }
   };
 
   const handleChange = (event) => {
@@ -48,7 +62,9 @@ export default function Register() {
             <input type="hidden" name="remember" defaultValue="true" />
             <div>
               <div className="mb-2 flex flex-row">
-                <label className="w-[25%] text-sm text-purple p-2 font-bold">First Name</label>
+                <label className="w-[25%] text-sm text-purple p-2 font-bold">
+                  First Name
+                </label>
                 <input
                   id="firstName"
                   name="firstName"
@@ -60,7 +76,9 @@ export default function Register() {
                 />
               </div>
               <div className="mb-2 flex flex-row">
-                <label className="w-[25%] text-sm text-purple p-2 font-bold">Last Name</label>
+                <label className="w-[25%] text-sm text-purple p-2 font-bold">
+                  Last Name
+                </label>
                 <input
                   id="lastName"
                   onChange={handleChange}
@@ -72,7 +90,9 @@ export default function Register() {
                 />
               </div>
               <div className="mb-2 flex flex-row">
-                <label className="w-[25%] text-sm text-purple p-2 font-bold">Role</label>
+                <label className="w-[25%] text-sm text-purple p-2 font-bold">
+                  Role
+                </label>
                 <select
                   id="userRole"
                   name="userRole"
@@ -85,7 +105,9 @@ export default function Register() {
                 </select>
               </div>
               <div className="mb-2 flex flex-row">
-                <label className="w-[25%] text-sm text-purple p-2 font-bold">Phone</label>
+                <label className="w-[25%] text-sm text-purple p-2 font-bold">
+                  Phone
+                </label>
                 <input
                   id="phone"
                   name="phone"
@@ -93,11 +115,13 @@ export default function Register() {
                   type="text"
                   required
                   className="appearance-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-xl focus:outline-none focus:ring-purple focus:border-purple focus:z-10 sm:text-sm"
-                  placeholder="phone"
+                  placeholder="+61#########"
                 />
               </div>
               <div className="mb-2 flex flex-row">
-                <label className="w-[25%] text-sm text-purple p-2 font-bold">Email</label>
+                <label className="w-[25%] text-sm text-purple p-2 font-bold">
+                  Email
+                </label>
                 <input
                   id="email"
                   name="email"
@@ -110,7 +134,10 @@ export default function Register() {
                 />
               </div>
               <div className="mb-2 flex flex-row">
-                <label htmlFor="password" className="w-[25%] text-sm text-purple p-2 font-bold">
+                <label
+                  htmlFor="password"
+                  className="w-[25%] text-sm text-purple p-2 font-bold"
+                >
                   Password
                 </label>
                 <input
@@ -141,6 +168,15 @@ export default function Register() {
               </button>
             </div>
           </form>
+          {!!errors && (
+            <div
+              className="bg-red border text-white px-4 py-3 rounded relative"
+              role="alert"
+            >
+              <strong className="font-bold">Error ! </strong>
+              <span className="block sm:inline">{errors}</span>
+            </div>
+          )}
         </div>
       </div>
     </>

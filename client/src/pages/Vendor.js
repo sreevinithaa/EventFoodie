@@ -18,8 +18,7 @@ const Vendor = () => {
   const [updateUserVendor] = useMutation(UPDATE_USER_VENDOR);
   const { loading, data } = useQuery(QUERY_VENDOR_USER);
   const [success, setsuccess] = useState(false);
-console.log(loading);
-console.log(data);
+  const [errors, seterrors] = useState();
   useEffect(() => {
     if (data) {
       setFormState({
@@ -34,21 +33,32 @@ console.log(data);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const mutationResponse = await updateUserVendor({
-      variables: {
-        name: formState.name,
-        description: formState.description,
-        imageUrl: formState.imageUrl,
-        StripeAccount: formState.StripeAccount,
-        _id: formState._id,
-      },
-    });
+    const IMAGE_REGEX = new RegExp(/(https?:\/\/.*\.(?:png|jpg))/);
+    if (IMAGE_REGEX.test(formState.imageUrl)) {
+      seterrors(null);
+    } else {
+      seterrors("Invalid image url. Please try again.");
+      return false;
+    }
+    try {
+      const mutationResponse = await updateUserVendor({
+        variables: {
+          name: formState.name,
+          description: formState.description,
+          imageUrl: formState.imageUrl,
+          StripeAccount: formState.StripeAccount,
+          _id: formState._id,
+        },
+      });
 
-    if (mutationResponse) {
-      setsuccess(true);
-      setTimeout(() => {
-        setsuccess(false);
-      }, 5000);
+      if (mutationResponse) {
+        setsuccess(true);
+        setTimeout(() => {
+          setsuccess(false);
+        }, 5000);
+      }
+    } catch (e) {
+      seterrors("Error occured while saving data.Please try again!");
     }
   };
 
@@ -148,6 +158,15 @@ console.log(data);
               </button>
             </div>
           </form>
+          {!!errors && (
+            <div
+              className="bg-red border text-white px-4 py-3 rounded relative"
+              role="alert"
+            >
+              <strong className="font-bold">Error ! </strong>
+              <span className="block sm:inline">{errors}</span>
+            </div>
+          )}
           {success ? (
             <div role="alert">
               <div className="bg-[#be77c6] text-purple font-bold rounded-t  border-[#764c7a]  px-4 py-2">
@@ -176,10 +195,9 @@ console.log(data);
           Add New Menu
         </Link>
       </div>
-      {(loading)? (
+      {loading ? (
         <></>
       ) : (
-        
         <table className="table-fixed text-sm w-[90%] border-purple border-collapse border border-slate p-1 m-8">
           <thead>
             <tr className=" bg-purple text-white rounded-xl">
