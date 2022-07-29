@@ -141,7 +141,7 @@ console.log(e);
         SendMessage(
           order.customer.phone,
           order.orderNumber,
-          order.orderStatus,
+          args.orderStatus,
           order.vendor.name
         );
       }
