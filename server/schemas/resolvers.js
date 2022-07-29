@@ -76,7 +76,7 @@ const resolvers = {
     },
     //checkout to stripe
     checkout: async (parent, args, context) => {
-      console.log(process.env.STRIPE_KEY_1);
+      
       const url = new URL(context.headers.referer).origin;
       const order = new Order({ orderItem: args.menu });
       const line_items = [];
@@ -89,21 +89,21 @@ const resolvers = {
           const product = await stripe.products.create({
             name: orderItem[i].name,
             description: orderItem[i].description,
-            images: [`${url}/images/${orderItem[i].imageUrl}`],
+            images: [orderItem[i].imageUrl],
           });
-          console.log("success2");
+         
           const price = await stripe.prices.create({
             product: product.id,
             unit_amount: orderItem[i].price * 100,
             currency: "aud",
           });
         
-          console.log("success3");
+        
           line_items.push({
             price: price.id,
             quantity: 1,
           });
-         console.log(line_items);
+        
         }
         catch(e)
         {
