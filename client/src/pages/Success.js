@@ -64,9 +64,9 @@ function Success() {
         });
       }
     }
-    // setTimeout(() => {
-    //   window.location.assign('/');
-    // }, 3000);
+    setTimeout(() => {
+      window.location.assign('/');
+    }, 5000);
 
     saveOrder();
   }, [addOrder]);
@@ -74,7 +74,7 @@ function Success() {
   return (
     <div>
       <Jumbotron>
-        <h1>Your Order Number is {orderNumber}</h1>
+        <h1 className="text-purple ">Your Order Number is {orderNumber}</h1>
         <h1>Success!</h1>
 
         <h2>Thank you for your purchase!</h2>
