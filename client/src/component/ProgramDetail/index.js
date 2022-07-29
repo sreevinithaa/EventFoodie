@@ -34,7 +34,7 @@ const ProgramDetail = () => {
       <div className=" max-w-3xl w-full space-y-2">
         <div>
           <img
-            src={`/images/${event.imageUrl}`}
+            src={event.imageUrl}
             alt={event.eventName}
             className="w-full h-full object-center object-cover group-hover:opacity-75"
           />

@@ -138,7 +138,7 @@ export default function Cart() {
                                   <li key={item._id} className="flex py-6">
                                     <div className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-md border border-gray">
                                       <img
-                                        src={`/images/${item.imageUrl}`}
+                                        src={item.imageUrl}
                                         alt={item.name}
                                         className="h-full w-full object-cover object-center"
                                       />

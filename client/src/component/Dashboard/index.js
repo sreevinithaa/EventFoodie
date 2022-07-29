@@ -42,7 +42,7 @@ const Dashboard = () => {
             >
               <div className="flex-none w-[100%] sm:w-[60%]">
                 <img
-                  src={`/images/${event.imageUrl}`}
+                  src={event.imageUrl}
                   alt={event.eventName}
                   className="max-w-full h-auto object-center object-cover group-hover:opacity-75"
                 />

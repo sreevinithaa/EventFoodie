@@ -40,7 +40,7 @@ function MenuDetail(menu) {
     return (  <div key={menu._id} className="group ">
     <div className="w-full aspect-w-1 aspect-h-1 bg-gray rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
       <img
-        src={`/images/${menu.imageUrl}`}
+        src={menu.imageUrl}
         alt={menu.name}
         className="w-full h-full object-center object-cover group-hover:opacity-75"
       />

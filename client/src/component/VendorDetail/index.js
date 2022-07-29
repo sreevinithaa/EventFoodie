@@ -34,7 +34,7 @@ const VendorDetail = () => {
       <div className=" max-w-3xl w-full space-y-2">
         <div>
           <img
-            src={`/images/${event.imageUrl}`}
+            src={event.imageUrl}
             alt={event.eventName}
             className="w-[full] h-full object-center object-cover group-hover:opacity-75"
           />
@@ -58,7 +58,7 @@ const VendorDetail = () => {
           {vendors.map((item) => (
             <div key={item._id} className="flex flex-row justify-evenly	 border-2 shadow-lg text-sm border-purple m-3 rounded-xl">
              <div className=" max-w-[10rem]"> <img
-            src={`/images/${item.imageUrl}`}
+            src={item.imageUrl}
             alt={item.name}
             className="object-center object-cover rounded-full group-hover:opacity-75"
           /></div>
