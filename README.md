@@ -4,6 +4,7 @@
 - [Description](#description)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Login](#login)
 - [Image](#image)
 - [Repository](#repository)
 - [Production](#production)
@@ -34,6 +35,15 @@ Run the following command at th root of your project and check the app
 
 `npm run develop`
 
+## Login
+
+Public user type login detail
+username : vini@gmail.com
+password : 123456
+
+Vendor type login detail
+username : kayal@gmail.com  
+password : 123456
 
 ## Contributing
 
