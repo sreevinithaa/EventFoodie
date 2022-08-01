@@ -27,7 +27,7 @@ import { StoreProvider } from "./utils/GlobalState";
 const httpLink = createHttpLink({
   uri: "/graphql",
 });
-
+//include token to header
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem("id_token");
   return {
@@ -50,9 +50,11 @@ function App() {
           <Header />
           <div className="flex flex-col min-h-[82vh]">
             <Routes>
+                {/* Define a default route that will render the Dashboard component */}
               <Route exact path="/" element={<Dashboard />} />
               <Route exact path="/login" element={<Login />} />
               <Route exact path="/signup" element={<Register />} />
+                {/* Define a route that will take in variable data */}
               <Route exact path="/program/:id" element={<ProgramDetail />} />
               <Route exact path="/vendors/:id" element={<VendorDetail />} />
               <Route exact path="/orders" element={<Order />} />
